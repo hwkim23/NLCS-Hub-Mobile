@@ -67,6 +67,7 @@ void main() async {
           ChangeNotifierProvider(create: (c) => Store2()),
         ],
         child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme: style.theme,
             title: 'NLCS Hub Mobile',
             home: const MyApp()
