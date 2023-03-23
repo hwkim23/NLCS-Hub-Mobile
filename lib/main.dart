@@ -1,5 +1,3 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -88,7 +86,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    //context.read<Store1>().getData();
     context.read<Store2>().fetchData(features[0], 0);
     context.read<Store2>().fetchData(features[1], 1);
     context.read<Store2>().fetchData(features[2], 2);
@@ -102,7 +99,6 @@ class _MyAppState extends State<MyApp> {
         return FutureBuilder<bool>(
             future: context.read<Store1>().getData(),
             builder: (context, AsyncSnapshot<bool> snapshot) {
-              //print('hi');
               if (!snapshot.hasData) {return Container(color: const Color.fromRGBO(241, 242, 246, 1.0), child: const Center(child: CircularProgressIndicator()));}
               return const HomePagePage();
             },
@@ -111,17 +107,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// TODO: wrtie code
-class Loading extends StatelessWidget {
-  const Loading({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
-  }
-}
-
 
 class HomePagePage extends StatefulWidget {
   const HomePagePage({
