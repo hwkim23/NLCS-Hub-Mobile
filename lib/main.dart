@@ -54,7 +54,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  //App portrait mode으로 set하기
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
