@@ -1,0 +1,78 @@
+name: nlcshub_app
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #State들 따로 저장할 수 있게 만들어 주는 플러그인
+  provider: ^6.0.5
+  #화면 사이즈별로 비율 조정해주는 플로그인
+  responsive_sizer: ^3.1.1
+  #Firebase 연결
+  firebase_core: ^2.4.0
+  cloud_firestore: ^4.2.0
+  firebase_storage: ^11.0.15
+  #SVG 이미지 사용하게 해주는 플러그인
+  flutter_svg: ^2.0.1
+  #Fl chart
+  fl_chart: ^0.61.0
+  #Circular avatar
+  circular_profile_avatar: ^2.0.5
+  #Path provider
+  path: any
+  path_provider: ^2.0.12
+  #Display PDF
+  flutter_pdfview: ^1.2.5
+  #Download PDF
+  http: ^0.13.5
+  #Toast message
+  fluttertoast: ^8.0.9
+  #Cached image
+  cached_network_image: ^3.2.3
+  #URL Launcher
+  url_launcher: ^6.1.10
+  #Chip
+  chips_choice: ^3.0.0
+  #Web Scraper
+  web_scraper: ^0.1.4
+  chip_list: ^2.2.3+7
+  audioplayers: ^3.0.1
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.12.0
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  assets:
+    - assets/
+  uses-material-design: true
+
+  fonts:
+    - family: HouseLogo
+      fonts:
+        - asset: fonts/HouseLogo.ttf
+    - family: Gloock-Regular
+      fonts:
+        - asset: fonts/Gloock-Regular.ttf
+    - family: Merriweather
+      fonts:
+        - asset: fonts/Merriweather-Regular.ttf
+    - family: Playfair
+      fonts:
+        - asset: fonts/PlayfairDisplay-VariableFont_wght.ttf
+    - family: RobotoSlab
+      fonts:
+        - asset: fonts/RobotoSlab-VariableFont_wght.ttf
+    - family: SourceSerif
+      fonts:
+        - asset: fonts/SourceSerifPro-Regular.ttf

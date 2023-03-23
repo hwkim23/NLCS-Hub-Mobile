@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "80843729525",
+    "project_id": "nlcshub",
+    "storage_bucket": "nlcshub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80843729525:android:975cee2cfdb0d3487fe63c",
+        "android_client_info": {
+          "package_name": "com.nlcsjeju.nlcshubmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "80843729525-6af1lc02529g6os38bsvqnuh7718bsh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJOazgs909eZZ-jnl2ZprDdg3wjakEJh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "80843729525-6af1lc02529g6os38bsvqnuh7718bsh3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "80843729525-c1i0ap14o59394diiv3a7f22rb5km879.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nlcsjeju.nlcshubmobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
