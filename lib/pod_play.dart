@@ -90,8 +90,8 @@ class _PodPlayState extends State<PodPlay> {
                     margin: EdgeInsets.symmetric(vertical: 3.h),
                     child: Center(
                       child: SizedBox(
-                        height: 75.w,
-                        width: 75.w,
+                        height: 40.h,
+                        width: 40.h,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: CachedNetworkImage(
