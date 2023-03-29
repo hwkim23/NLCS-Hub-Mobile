@@ -5,6 +5,7 @@ import 'myAppBar.dart';
 //import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:web_scraper/web_scraper.dart';
+import 'package:lottie/lottie.dart';
 
 class Article extends StatefulWidget {
   const Article({Key? key, required this.url, required this.title, required this.category, required this.imageURL, required this.date, this.paragraph}) : super(key: key);
@@ -64,7 +65,7 @@ class _ArticleState extends State<Article> {
       appBar: BaseAppBar(appBar: AppBar(), color: Colors.white),
       body: SafeArea(
         child: paragraph == null
-                ? const Center(child: CircularProgressIndicator())
+                ? Center(child: Lottie.asset('assets/lottie.json'))
                 : Container(
                     width: double.infinity,
                     height: double.infinity,

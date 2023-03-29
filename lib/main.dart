@@ -1,5 +1,3 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -48,6 +46,9 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 //Cached image
 import 'package:cached_network_image/cached_network_image.dart';
 
+//Lottie
+import 'package:lottie/lottie.dart';
+
 List<String> features = ['/languages/2561/', '/languages/2552/', '/languages/2543/', '/stem/2537/'];
 
 void main() async {
@@ -56,7 +57,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  //App portrait mode으로 set하기
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -88,7 +88,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    //context.read<Store1>().getData();
     context.read<Store2>().fetchData(features[0], 0);
     context.read<Store2>().fetchData(features[1], 1);
     context.read<Store2>().fetchData(features[2], 2);
@@ -102,8 +101,7 @@ class _MyAppState extends State<MyApp> {
         return FutureBuilder<bool>(
             future: context.read<Store1>().getData(),
             builder: (context, AsyncSnapshot<bool> snapshot) {
-              //print('hi');
-              if (!snapshot.hasData) {return Container(color: const Color.fromRGBO(241, 242, 246, 1.0), child: const Center(child: CircularProgressIndicator()));}
+              if (!snapshot.hasData) {return Container(color: const Color.fromRGBO(241, 242, 246, 1.0), child: Center(child: Lottie.asset('assets/lottie.json')));}
               return const HomePagePage();
             },
         );
@@ -111,17 +109,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// TODO: wrtie code
-class Loading extends StatelessWidget {
-  const Loading({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
-  }
-}
-
 
 class HomePagePage extends StatefulWidget {
   const HomePagePage({
@@ -133,7 +120,6 @@ class HomePagePage extends StatefulWidget {
 }
 
 class _HomePagePageState extends State<HomePagePage> {
-  // TODO: Lottie Animation Loading
   // TODO: Youtube
   // TODO: Categories load all articles
 
