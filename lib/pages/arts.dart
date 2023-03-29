@@ -11,6 +11,7 @@ import '../myDrawer.dart';
 import 'bulletin.dart';
 
 import 'package:chips_choice/chips_choice.dart';
+import 'package:lottie/lottie.dart';
 
 class Arts extends StatefulWidget {
   const Arts({
@@ -156,7 +157,7 @@ class _ArtsState extends State<Arts> {
           builder: (context, constraints) {
             if (_selectedIndex == -1) {
               return title == null || title!.isEmpty
-                ? const Center(child: CircularProgressIndicator())
+                ? Center(child: Lottie.asset('assets/lottie.json'))
                 : RefreshIndicator(
                 onRefresh: refresh,
                 child: Padding(

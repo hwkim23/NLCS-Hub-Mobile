@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:web_scraper/web_scraper.dart';
+import 'package:lottie/lottie.dart';
 
 import 'article.dart';
 
@@ -121,7 +122,7 @@ class _SearchPageState extends State<SearchPage> {
         child: searchTerm == null
           ? const SizedBox()
           : title == null
-            ? const Center(child: CircularProgressIndicator())
+            ? Center(child: Lottie.asset('assets/lottie.json'))
             : Padding(
               padding: EdgeInsets.only(left: 5.w, right: 5.w),
               child: SingleChildScrollView(

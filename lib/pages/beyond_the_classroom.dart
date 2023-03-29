@@ -4,6 +4,7 @@ import 'package:nlcshub_app/myAppBar.dart';
 import 'package:nlcshub_app/pages/sports.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:web_scraper/web_scraper.dart';
+import 'package:lottie/lottie.dart';
 
 import '../article.dart';
 import '../main.dart';
@@ -120,7 +121,7 @@ class _BeyondTheClassroomState extends State<BeyondTheClassroom> {
           builder: (context, constraints) {
             if (_selectedIndex == -1) {
               return title == null || title!.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Center(child: Lottie.asset('assets/lottie.json'))
                   : RefreshIndicator(
                 onRefresh: refresh,
                 child: Padding(
