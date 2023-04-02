@@ -5,8 +5,71 @@ import 'package:nlcshub_app/pdf_api.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'dart:io';
+import 'package:nlcshub_app/myAppBar.dart';
+import 'package:nlcshub_app/myDrawer.dart';
+import 'package:nlcshub_app/pages/sports.dart';
+import 'package:nlcshub_app/main.dart';
 
 import '../state.dart';
+
+class BulletinCall extends StatefulWidget {
+  const BulletinCall({super.key});
+
+  @override
+  State<BulletinCall> createState() => _BulletinCallState();
+}
+
+class _BulletinCallState extends State<BulletinCall> {
+  int _selectedIndex = 2;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
+      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      body: SafeArea(
+        child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (_selectedIndex == 0) {
+                return const Sports();
+              } else if (_selectedIndex == 1) {
+                return const HomePage();
+              }
+              else {
+                return const Bulletin();
+              }
+            }
+        ),
+      ),
+      drawer: const BaseDrawer(drawer: Drawer()),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sports),
+            label: 'Sports',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Bulletin',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: const Color(0xff1e73be),
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}
 
 class Bulletin extends StatefulWidget {
   const Bulletin({Key? key}) : super(key: key);
@@ -22,9 +85,7 @@ class _BulletinState extends State<Bulletin> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
-      body: SafeArea(
+    return SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 3.h, bottom: 3.h, left: 5.w, right: 5.w),
           child: ListView.builder(
@@ -63,7 +124,6 @@ class _BulletinState extends State<Bulletin> {
             }
           ),
         ),
-      ),
-    );
+      );
   }
 }

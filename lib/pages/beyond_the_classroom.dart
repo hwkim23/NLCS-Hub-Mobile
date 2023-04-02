@@ -124,6 +124,7 @@ class _BeyondTheClassroomState extends State<BeyondTheClassroom> {
                   ? Center(child: Lottie.asset('assets/lottie.json'))
                   : RefreshIndicator(
                 onRefresh: refresh,
+                color: const Color(0xff1e73be),
                 child: Padding(
                   padding: EdgeInsets.only(left: 5.w, right: 5.w),
                   child: SingleChildScrollView(

@@ -5,6 +5,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../main.dart';
 import '../state.dart';
 import 'bulletin.dart';
+import 'package:nlcshub_app/myAppBar.dart';
+import 'package:nlcshub_app/myDrawer.dart';
 
 int select = 0;
 
@@ -990,6 +992,65 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   }
 }
 
+class SportsCall extends StatefulWidget {
+  const SportsCall({super.key});
+
+  @override
+  State<SportsCall> createState() => _SportsCallState();
+}
+
+class _SportsCallState extends State<SportsCall> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
+      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      body: SafeArea(
+        child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (_selectedIndex == 0) {
+                return const Sports();
+              } else if (_selectedIndex == 1) {
+                return const HomePage();
+              }
+              else {
+                return const Bulletin();
+              }
+            }
+        ),
+      ),
+      drawer: const BaseDrawer(drawer: Drawer()),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sports),
+            label: 'Sports',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Bulletin',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: const Color(0xff1e73be),
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
 class Sports extends StatefulWidget {
   const Sports({
     Key? key,
@@ -1103,10 +1164,10 @@ class _SportsState extends State<Sports> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
-      //drawer: BaseDrawer(drawer: const Drawer(), title: widget.title, path: widget.path, nextH: widget.nextH, jeoji: widget.jeoji, geomun: widget.geomun, sarah: widget.sarah, mulchat: widget.mulchat, noro: widget.noro),
-      /*bottomNavigationBar: BottomNavigationBar(
+    return /*Scaffold(
+      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      drawer: BaseDrawer(drawer: const Drawer(), title: widget.title, path: widget.path, nextH: widget.nextH, jeoji: widget.jeoji, geomun: widget.geomun, sarah: widget.sarah, mulchat: widget.mulchat, noro: widget.noro),
+      bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.sports),
@@ -1125,8 +1186,10 @@ class _SportsState extends State<Sports> {
         selectedFontSize: (_selectedIndex != -1) ? 14 : 12,
         selectedItemColor: (_selectedIndex != -1) ? const Color(0xff1e73be) : Colors.black54,
         onTap: _onItemTapped,
-      ),*/
-      body: SafeArea(
+      ),
+      body: 
+    );*/
+    SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             if (_selectedIndex == -1) {
@@ -1312,8 +1375,7 @@ class _SportsState extends State<Sports> {
             }
           }
         )
-      ),
-    );
+      );
   }
 }
 
