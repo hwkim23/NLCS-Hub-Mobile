@@ -86,7 +86,6 @@ class _ArtsState extends State<Arts> {
   @override
   void initState() {
     super.initState();
-    // Requesting to fetch before UI drawing starts
     fetchData();
   }
 
@@ -159,6 +158,7 @@ class _ArtsState extends State<Arts> {
               return title == null || title!.isEmpty
                 ? Center(child: Lottie.asset('assets/lottie.json'))
                 : RefreshIndicator(
+                color: const Color(0xff1e73be),
                 onRefresh: refresh,
                 child: Padding(
                   padding: EdgeInsets.only(left: 5.w, right: 5.w),

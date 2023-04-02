@@ -9,6 +9,8 @@ import 'package:nlcshub_app/pages/pdf_menu.dart';
 import 'package:nlcshub_app/pages/spatium.dart';
 import 'package:nlcshub_app/pages/stem.dart';
 import 'package:nlcshub_app/pages/tok.dart';
+import 'package:nlcshub_app/pages/bulletin.dart';
+import 'package:nlcshub_app/pages/sports.dart';
 import 'pdf_api.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'dart:io';
@@ -66,6 +68,20 @@ class BaseDrawer extends StatelessWidget {
                       final file = await PDFApi.loadFirebase(url);
                       if (file == null) return;
                       openPDF(context, file);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Bulletin"),
+                    leading: const Icon(Icons.restaurant_menu, color: Colors.black),
+                    onTap: () async {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BulletinCall()), (route) => false);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Sports"),
+                    leading: const Icon(Icons.restaurant_menu, color: Colors.black),
+                    onTap: () async {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SportsCall()), (route) => false);
                     },
                   ),
                   ExpansionTile(

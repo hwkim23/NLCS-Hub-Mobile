@@ -483,7 +483,7 @@ class _BarChart extends StatelessWidget {
         BarChartRodData(
           toY: jeoji,
           gradient: _barsGradientJ,
-          width: 22,
+          width: 6.w,
         )
       ],
       showingTooltipIndicators: [0],
@@ -494,7 +494,7 @@ class _BarChart extends StatelessWidget {
         BarChartRodData(
           toY: geomun,
           gradient: _barsGradientG,
-          width: 22,
+          width: 6.w,
         )
       ],
       showingTooltipIndicators: [0],
@@ -505,7 +505,7 @@ class _BarChart extends StatelessWidget {
         BarChartRodData(
           toY: sarah,
           gradient: _barsGradientS,
-          width: 22,
+          width:6.w,
         )
       ],
       showingTooltipIndicators: [0],
@@ -516,7 +516,7 @@ class _BarChart extends StatelessWidget {
         BarChartRodData(
           toY: mulchat,
           gradient: _barsGradientM,
-          width: 22,
+          width: 6.w,
         )
       ],
       showingTooltipIndicators: [0],
@@ -527,7 +527,7 @@ class _BarChart extends StatelessWidget {
         BarChartRodData(
           toY: noro,
           gradient: _barsGradientN,
-          width: 22,
+          width: 6.w,
         )
       ],
       showingTooltipIndicators: [0],
@@ -545,14 +545,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future refresh() async {
-    context.read<Store1>().getData();
-    context.read<Store2>().fetchData(features[0], 0);
-    context.read<Store2>().fetchData(features[1], 1);
-    context.read<Store2>().fetchData(features[2], 2);
-    context.read<Store2>().fetchData(features[3], 3);
-  }
-
   final webScraper = WebScraper('https://nlcshub.com');
 
   Future<List<Map<String, dynamic>>> fetchParagraph(String url) async {
@@ -584,217 +576,213 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      // TODO: Change color
-      onRefresh: refresh,
-      child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Center(
-                      child: Container(
-                        margin: EdgeInsets.only(top: 3.h),
-                        child: SvgPicture.asset(
-                          'assets/logo.svg',
-                          height: 7.h,
-                        ),
-                      ),
-                    ),
-                    Container(
+    return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Center(
+                    child: Container(
                       margin: EdgeInsets.only(top: 3.h),
-                      child: Text(
-                        "This Week's Bulletin",
-                        style: TextStyle(fontSize: 20.sp),
+                      child: SvgPicture.asset(
+                        'assets/logo.svg',
+                        height: 7.h,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2.h),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        height: 9.h,
-                        width: 100.w,
-                        child: GestureDetector(
-                          onTap: () async {
-                            Fluttertoast.showToast(msg: "Loading, please wait.", fontSize: 18.0);
-                            String url = context.read<Store1>().path[0];
-                            final file = await PDFApi.loadFirebase(url);
-                            if (file == null) return;
-                            openPDF(context, file);
-                          },
-                          child: Card(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Container(
-                              padding: EdgeInsets.only(top: 2.7.h, left: 5.w, right: 5.w),
-                              child: Text(
-                                context.watch<Store1>().title[0],
-                                textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 17.sp),
-                              ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 3.h),
+                    child: Text(
+                      "This Week's Bulletin",
+                      style: TextStyle(fontSize: 20.sp),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 2.h),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 9.h,
+                      width: 100.w,
+                      child: GestureDetector(
+                        onTap: () async {
+                          Fluttertoast.showToast(msg: "Loading, please wait.", fontSize: 18.0);
+                          String url = context.read<Store1>().path[0];
+                          final file = await PDFApi.loadFirebase(url);
+                          if (file == null) return;
+                          openPDF(context, file);
+                        },
+                        child: Card(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                            padding: EdgeInsets.only(top: 2.7.h, left: 5.w, right: 5.w),
+                            child: Text(
+                              context.watch<Store1>().title[0],
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontSize: 17.sp),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const ItemTile(),
-                    Text(
-                      'Explore',
+                  ),
+                  const ItemTile(),
+                  Text(
+                    'Explore',
+                    style: TextStyle(fontSize: 20.sp),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 2.h),
+                    height: 12.h,
+                    child: ListView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 5,
+                        itemBuilder: (BuildContext context, int index) {
+                          List categories = [
+                            ["STEM", const STEM()],
+                            ["Humanities", const Humanities()],
+                            ["Languages", const Languages()],
+                            ["Arts", const Arts()],
+                            ["TOK", const TOK()]
+                          ];
+                          return Padding(
+                            padding: EdgeInsets.only(right: 3.h),
+                            child: CircularProfileAvatar(
+                              imgs[index],
+                              radius: 6.h,
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => categories[index][1]));
+                              },
+                              initialsText: Text(
+                                categories[index][0],
+                                style: TextStyle(fontSize: 15.sp,
+                                    color: Colors.white),
+                              ),
+                              showInitialTextAbovePicture: true,
+                              cacheImage: true,
+                            ),
+                          );
+                        }
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 3.h),
+                    child: Text(
+                      'Featured Articles',
                       style: TextStyle(fontSize: 20.sp),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 2.h),
-                      height: 12.h,
-                      child: ListView.builder(
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 5,
-                          itemBuilder: (BuildContext context, int index) {
-                            List categories = [
-                              ["STEM", const STEM()],
-                              ["Humanities", const Humanities()],
-                              ["Languages", const Languages()],
-                              ["Arts", const Arts()],
-                              ["TOK", const TOK()]
-                            ];
-                            return Padding(
-                              padding: EdgeInsets.only(right: 3.h),
-                              child: CircularProfileAvatar(
-                                imgs[index],
-                                radius: 6.h,
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => categories[index][1]));
-                                },
-                                initialsText: Text(
-                                  categories[index][0],
-                                  style: TextStyle(fontSize: 15.sp,
-                                      color: Colors.white),
-                                ),
-                                showInitialTextAbovePicture: true,
-                                cacheImage: true,
+                  ),
+                  Container(
+                    height: 318,
+                    clipBehavior: Clip.none,
+                    child: ListView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        itemBuilder: (BuildContext context, int index) {
+                          Map<String, dynamic> attributes =
+                          context.watch<Store2>().image[index][0]['attributes'];
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                right: 1.1.h, top: 2.h, bottom: 3.h),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                            );
-                          }
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 3.h),
-                      child: Text(
-                        'Featured Articles',
-                        style: TextStyle(fontSize: 20.sp),
-                      ),
-                    ),
-                    Container(
-                      height: 318,
-                      clipBehavior: Clip.none,
-                      child: ListView.builder(
-                          physics: const ClampingScrollPhysics(),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 4,
-                          itemBuilder: (BuildContext context, int index) {
-                            Map<String, dynamic> attributes =
-                            context.watch<Store2>().image[index][0]['attributes'];
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                  right: 1.1.h, top: 2.h, bottom: 3.h),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: GestureDetector(
-                                  onTap: (){
-                                    put(features[index], context.read<Store2>().title![index][0]['title'], context.read<Store2>().category[index][0]['title'], attributes['src'], context.read<Store2>().date[index][0]['title']);
-                                  },
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20)),
-                                    child: Container(
-                                      width: 260,
-                                      padding: EdgeInsets.all(1.h),
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 140,
-                                            width: 260,
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(15),
-                                              child: CachedNetworkImage(
-                                                imageUrl: attributes['src'],
-                                                fit: BoxFit.cover,
-                                                placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                                errorWidget: (context, url, error) => const Icon(Icons.error),
-                                              ),
+                              child: GestureDetector(
+                                onTap: (){
+                                  put(features[index], context.read<Store2>().title![index][0]['title'], context.read<Store2>().category[index][0]['title'], attributes['src'], context.read<Store2>().date[index][0]['title']);
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Container(
+                                    width: 260,
+                                    padding: EdgeInsets.all(1.h),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 140,
+                                          width: 260,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(15),
+                                            child: CachedNetworkImage(
+                                              imageUrl: attributes['src'],
+                                              fit: BoxFit.cover,
+                                              placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
+                                              errorWidget: (context, url, error) => const Icon(Icons.error),
                                             ),
                                           ),
-                                          Container(
-                                            margin: const EdgeInsets.only(top: 15),
-                                            height: 83,
-                                            width: 230,
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment
-                                                  .start,
-                                              children: [
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 3),
-                                                  child: Text(
-                                                      context.read<Store2>().category[index][0]['title'],
-                                                      style: TextStyle(
-                                                          fontSize: 14.sp,
-                                                          color: const Color(
-                                                              0xffA3A3A3)
-                                                      )
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 40,
-                                                  child: Text(
-                                                      context.read<Store2>().title![index][0]['title'],
-                                                      maxLines: 2,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      style: TextStyle(
-                                                          fontSize: 16.sp,
-                                                          height: 1.3,
-                                                          color: const Color(0xff343434)
-                                                      )
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 7),
-                                                  child: Text(
-                                                    context.read<Store2>().read[index][0]['title'],
+                                        ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 15),
+                                          height: 83,
+                                          width: 230,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment
+                                                .start,
+                                            children: [
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    bottom: 3),
+                                                child: Text(
+                                                    context.read<Store2>().category[index][0]['title'],
                                                     style: TextStyle(
-                                                        fontSize: 15.sp,
+                                                        fontSize: 14.sp,
                                                         color: const Color(
                                                             0xffA3A3A3)
-                                                    ),
+                                                    )
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 40,
+                                                child: Text(
+                                                    context.read<Store2>().title![index][0]['title'],
+                                                    maxLines: 2,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        fontSize: 16.sp,
+                                                        height: 1.3,
+                                                        color: const Color(0xff343434)
+                                                    )
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 7),
+                                                child: Text(
+                                                  context.read<Store2>().read[index][0]['title'],
+                                                  style: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: const Color(
+                                                          0xffA3A3A3)
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                            );
-                          }
-                      ),
-                    )
-                  ],
-                ),
+                            ),
+                          );
+                        }
+                    ),
+                  )
+                ],
               ),
-      ),
+            ),
     );
   }
 }
