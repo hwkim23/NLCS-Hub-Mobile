@@ -37,6 +37,23 @@ class Store1 extends ChangeNotifier {
 
 
   Future<bool> getData() async {
+    title = [];
+    path = [];
+    sport = [];
+    tournament = [];
+    date = [];
+    isA = [];
+    isBoy = [];
+    score = [];
+    opp = [];
+    podTitle = [];
+    podDate = [];
+    podImage = [];
+    podPath = [];
+    podImg = [];
+    podMp3 = [];
+    logoUrl = [];
+
     await firestore.collection("bulletin").orderBy('index', descending: true).get().then((QuerySnapshot ds) {
       for (var doc in ds.docs) {
         title.add(doc["title"]);
@@ -103,7 +120,6 @@ class Store1 extends ChangeNotifier {
   }
 }
 class Store2 extends ChangeNotifier {
-  // TODO: web scrape this
   final webScraper = WebScraper('https://nlcshub.com');
 
   late List<List<Map<String, dynamic>>>? title = [[],[],[],[],[]];
