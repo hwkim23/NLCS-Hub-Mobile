@@ -166,8 +166,8 @@ class _BeyondTheClassroomState extends State<BeyondTheClassroom> {
                                           child: Row(
                                             children: [
                                               SizedBox(
-                                                height: 100,
-                                                width: 100,
+                                                height: 11.h,
+                                                width: 11.h,
                                                 child: ClipRRect(
                                                   borderRadius: BorderRadius.circular(15),
                                                   child: CachedNetworkImage(
@@ -187,7 +187,7 @@ class _BeyondTheClassroomState extends State<BeyondTheClassroom> {
                                                         .start,
                                                     children: [
                                                       Container(
-                                                        height: 60,
+                                                        height: 70,
                                                         padding: const EdgeInsets.only(right: 20),
                                                         child: Text(
                                                             title![index]['title'],
@@ -202,7 +202,7 @@ class _BeyondTheClassroomState extends State<BeyondTheClassroom> {
                                                       ),
                                                       Container(
                                                         margin: const EdgeInsets.only(
-                                                            top: 7),
+                                                            top: 0),
                                                         child: Text(
                                                           read[index]['title'],
                                                           style: TextStyle(
