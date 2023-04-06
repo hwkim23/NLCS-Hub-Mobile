@@ -72,14 +72,14 @@ class BaseDrawer extends StatelessWidget {
                   ),
                   ListTile(
                     title: const Text("Bulletin"),
-                    leading: const Icon(Icons.restaurant_menu, color: Colors.black),
+                    leading: const Icon(Icons.message, color: Colors.black),
                     onTap: () async {
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BulletinCall()), (route) => false);
                     },
                   ),
                   ListTile(
                     title: const Text("Sports"),
-                    leading: const Icon(Icons.restaurant_menu, color: Colors.black),
+                    leading: const Icon(Icons.sports, color: Colors.black),
                     onTap: () async {
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SportsCall()), (route) => false);
                     },

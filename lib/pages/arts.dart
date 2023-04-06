@@ -221,8 +221,8 @@ class _ArtsState extends State<Arts> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 100,
-                                                        width: 100,
+                                                        height: 11.h,
+                                                        width: 11.h,
                                                         child: ClipRRect(
                                                           borderRadius: BorderRadius.circular(15),
                                                           child: CachedNetworkImage(
@@ -242,7 +242,7 @@ class _ArtsState extends State<Arts> {
                                                                 .start,
                                                             children: [
                                                               Container(
-                                                                height: 60,
+                                                                height: 70,
                                                                 padding: const EdgeInsets.only(right: 20),
                                                                 child: Text(
                                                                     title![index]['title'],
@@ -257,7 +257,7 @@ class _ArtsState extends State<Arts> {
                                                               ),
                                                               Container(
                                                                 margin: const EdgeInsets.only(
-                                                                    top: 7),
+                                                                    top: 0),
                                                                 child: Text(
                                                                   read[index]['title'],
                                                                   style: TextStyle(
@@ -314,8 +314,8 @@ class _ArtsState extends State<Arts> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 100,
-                                                        width: 100,
+                                                        height: 11.h,
+                                                        width: 11.h,
                                                         child: ClipRRect(
                                                           borderRadius: BorderRadius.circular(15),
                                                           child: CachedNetworkImage(
@@ -335,7 +335,7 @@ class _ArtsState extends State<Arts> {
                                                                 .start,
                                                             children: [
                                                               Container(
-                                                                height: 60,
+                                                                height: 70,
                                                                 padding: const EdgeInsets.only(right: 20),
                                                                 child: Text(
                                                                     filteredTitle[index]['title'],
@@ -350,7 +350,7 @@ class _ArtsState extends State<Arts> {
                                                               ),
                                                               Container(
                                                                 margin: const EdgeInsets.only(
-                                                                    top: 7),
+                                                                    top: 0),
                                                                 child: Text(
                                                                   filteredRead[index]['title'],
                                                                   style: TextStyle(
@@ -407,8 +407,8 @@ class _ArtsState extends State<Arts> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 100,
-                                                        width: 100,
+                                                        height: 11.h,
+                                                        width: 11.h,
                                                         child: ClipRRect(
                                                           borderRadius: BorderRadius.circular(15),
                                                           child: CachedNetworkImage(
@@ -428,7 +428,7 @@ class _ArtsState extends State<Arts> {
                                                                 .start,
                                                             children: [
                                                               Container(
-                                                                height: 60,
+                                                                height: 70,
                                                                 padding: const EdgeInsets.only(right: 20),
                                                                 child: Text(
                                                                     filteredTitle[index]['title'],
@@ -443,7 +443,7 @@ class _ArtsState extends State<Arts> {
                                                               ),
                                                               Container(
                                                                 margin: const EdgeInsets.only(
-                                                                    top: 7),
+                                                                    top: 0),
                                                                 child: Text(
                                                                   filteredRead[index]['title'],
                                                                   style: TextStyle(
@@ -500,8 +500,8 @@ class _ArtsState extends State<Arts> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 100,
-                                                        width: 100,
+                                                        height: 11.h,
+                                                        width: 11.h,
                                                         child: ClipRRect(
                                                           borderRadius: BorderRadius.circular(15),
                                                           child: CachedNetworkImage(
@@ -521,7 +521,7 @@ class _ArtsState extends State<Arts> {
                                                                 .start,
                                                             children: [
                                                               Container(
-                                                                height: 60,
+                                                                height: 70,
                                                                 padding: const EdgeInsets.only(right: 20),
                                                                 child: Text(
                                                                     filteredTitle[index]['title'],
@@ -536,7 +536,7 @@ class _ArtsState extends State<Arts> {
                                                               ),
                                                               Container(
                                                                 margin: const EdgeInsets.only(
-                                                                    top: 7),
+                                                                    top: 0),
                                                                 child: Text(
                                                                   filteredRead[index]['title'],
                                                                   style: TextStyle(
@@ -593,8 +593,8 @@ class _ArtsState extends State<Arts> {
                                                   child: Row(
                                                     children: [
                                                       SizedBox(
-                                                        height: 100,
-                                                        width: 100,
+                                                        height: 11.h,
+                                                        width: 11.h,
                                                         child: ClipRRect(
                                                           borderRadius: BorderRadius.circular(15),
                                                           child: CachedNetworkImage(
@@ -614,7 +614,7 @@ class _ArtsState extends State<Arts> {
                                                                 .start,
                                                             children: [
                                                               Container(
-                                                                height: 60,
+                                                                height: 70,
                                                                 padding: const EdgeInsets.only(right: 20),
                                                                 child: Text(
                                                                     filteredTitle[index]['title'],
@@ -629,7 +629,7 @@ class _ArtsState extends State<Arts> {
                                                               ),
                                                               Container(
                                                                 margin: const EdgeInsets.only(
-                                                                    top: 7),
+                                                                    top: 0),
                                                                 child: Text(
                                                                   filteredRead[index]['title'],
                                                                   style: TextStyle(

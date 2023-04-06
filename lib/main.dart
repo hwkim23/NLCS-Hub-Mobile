@@ -138,6 +138,7 @@ class _HomePagePageState extends State<HomePagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
       backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
       appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
       body: SafeArea(
@@ -680,7 +681,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    height: 318,
+                    height: 330,
                     clipBehavior: Clip.none,
                     child: ListView.builder(
                         physics: const ClampingScrollPhysics(),
@@ -706,6 +707,7 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius: BorderRadius.circular(20)),
                                   child: Container(
                                     width: 260,
+
                                     padding: EdgeInsets.all(1.h),
                                     child: Column(
                                       children: [
@@ -724,7 +726,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Container(
                                           margin: const EdgeInsets.only(top: 15),
-                                          height: 83,
+                                          height: 100,
                                           width: 230,
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment
@@ -735,34 +737,33 @@ class _HomePageState extends State<HomePage> {
                                                     bottom: 3),
                                                 child: Text(
                                                     context.read<Store2>().category[index][0]['title'],
-                                                    style: TextStyle(
-                                                        fontSize: 14.sp,
-                                                        color: const Color(
+                                                    style: const TextStyle(
+                                                        fontSize: 13,
+                                                        color: Color(
                                                             0xffA3A3A3)
                                                     )
                                                 ),
                                               ),
                                               SizedBox(
-                                                height: 40,
+                                                height: 45,
                                                 child: Text(
                                                     context.read<Store2>().title![index][0]['title'],
                                                     maxLines: 2,
                                                     overflow: TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 16.sp,
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
                                                         height: 1.3,
-                                                        color: const Color(0xff343434)
+                                                        color: Color(0xff343434)
                                                     )
                                                 ),
                                               ),
                                               Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 7),
+                                                margin: const EdgeInsets.only(top: 10),
                                                 child: Text(
                                                   context.read<Store2>().read[index][0]['title'],
-                                                  style: TextStyle(
-                                                      fontSize: 15.sp,
-                                                      color: const Color(
+                                                  style: const TextStyle(
+                                                      fontSize: 13,
+                                                      color: Color(
                                                           0xffA3A3A3)
                                                   ),
                                                 ),

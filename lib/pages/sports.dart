@@ -330,56 +330,58 @@ class _ItemTileState extends State<ItemTile> {
   @override
   Widget build(BuildContext context) {
     filter(widget.division);
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          widget.expanded[widget.index] = !widget.expanded[widget.index];
-        });
-      },
-      child: AnimatedContainer(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        margin: EdgeInsets.only(top: 1.h),
-        duration: const Duration(milliseconds: 200),
-        height: widget.expanded[widget.index]
-        // TODO: 갯수에 따라 다르게 만들기
-            ? date.isNotEmpty ? date.length==1 ? 230 : 230+(172*(date.length-1)) : 9.h
-            : 9.h,
-        child: Card(
-          color: const Color.fromRGBO(241, 242, 246, 1.0),
-          elevation: 0,
-          shape: RoundedRectangleBorder(
+    return SingleChildScrollView(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            widget.expanded[widget.index] = !widget.expanded[widget.index];
+          });
+        },
+        child: AnimatedContainer(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Column(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 2.5.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.division,
-                      style: TextStyle(fontSize: 18.sp),
-                    ),
-                    widget.expanded[widget.index]
-                        ? const Icon(Icons.expand_less)
-                        : const Icon(Icons.expand_more),
-                  ],
+          margin: EdgeInsets.only(top: 1.h),
+          duration: const Duration(milliseconds: 200),
+          height: widget.expanded[widget.index]
+          // TODO: 갯수에 따라 다르게 만들기
+              ? date.isNotEmpty ? date.length==1 ? 25.65.h : 25.65.h+(19.h*(date.length-1)) : 9.h
+              : 9.h,
+          child: Card(
+            color: const Color.fromRGBO(241, 242, 246, 1.0),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 2.5.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.division,
+                        style: TextStyle(fontSize: 18.sp),
+                      ),
+                      widget.expanded[widget.index]
+                          ? const Icon(Icons.expand_less)
+                          : const Icon(Icons.expand_more),
+                    ],
+                  ),
                 ),
-              ),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                height: widget.expanded[widget.index]
-                    ? date.isNotEmpty ? date.length==1 ? 175 : 175+(172*(date.length-1)) : 0
-                    : 0,
-                width: 100.w,
-                child: widget.expanded[widget.index]
-                    ? ItemExpandedTile(competitions: widget.competitions, division: widget.division)
-                    : const SizedBox(height: 0.00),
-              ),
-            ],
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  height: widget.expanded[widget.index]
+                      ? date.isNotEmpty ? date.length==1 ? 19.h : 19.h+(19.h*(date.length-1)) : 0
+                      : 0,
+                  width: 100.w,
+                  child: widget.expanded[widget.index]
+                      ? ItemExpandedTile(competitions: widget.competitions, division: widget.division)
+                      : const SizedBox(height: 0.00),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -870,7 +872,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               return Container(
                 margin: EdgeInsets.only(top: 2.5.h),
                 padding: EdgeInsets.symmetric(horizontal: 5.w),
-                height: 150,
+                height: 16.5.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(
@@ -932,7 +934,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                           "${score[index][0]}",
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 22.sp
+                                              fontSize: 21.sp
                                           ),
                                         ),
                                         const VerticalDivider(
@@ -944,7 +946,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                           "${score[index][1]}",
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 22.sp
+                                              fontSize: 21.sp
                                           ),
                                         )
                                       ],
@@ -953,7 +955,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                 ),
                               ),Flexible(
                                 flex: 1,
-                                child: Container(
+                                child: SizedBox(
                                     //margin: EdgeInsets.only(top: 0.8.h),
                                     width: double.infinity,
                                     child: Text(
@@ -1011,6 +1013,7 @@ class _SportsCallState extends State<SportsCall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, 
       backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
       appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
       body: SafeArea(
@@ -1094,7 +1097,6 @@ class _SportsState extends State<Sports> {
   List<int> listOfChipIndicesCurrentlySeclected = [0];
   bool shouldWrap = false;
   ScrollPhysics? scrollPhysics;
-  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center;
   WrapAlignment wrapAlignment = WrapAlignment.start;
   WrapCrossAlignment wrapCrossAlignment = WrapCrossAlignment.start;
   Axis axis = Axis.horizontal;
@@ -1206,7 +1208,7 @@ class _SportsState extends State<Sports> {
                               scrollDirection: axis,
                               physics: scrollPhysics ?? const ScrollPhysics(),
                               child: Row(
-                                mainAxisAlignment: mainAxisAlignment,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: List.generate(
                                   listOfChipNames.length,
                                       (index) => Padding(

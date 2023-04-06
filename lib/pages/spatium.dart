@@ -106,8 +106,8 @@ class _SpatiumState extends State<Spatium> {
                                           child: Row(
                                             children: [
                                               SizedBox(
-                                                height: 100,
-                                                width: 100,
+                                                height: 11.h,
+                                                width: 11.h,
                                                 child: ClipRRect(
                                                   borderRadius: BorderRadius.circular(15),
                                                   child: CachedNetworkImage(
@@ -127,7 +127,7 @@ class _SpatiumState extends State<Spatium> {
                                                         .start,
                                                     children: [
                                                       Container(
-                                                        height: 60,
+                                                        height: 70,
                                                         padding: const EdgeInsets.only(right: 20),
                                                         child: Text(
                                                             context.watch<Store1>().podTitle[index],
@@ -142,7 +142,7 @@ class _SpatiumState extends State<Spatium> {
                                                       ),
                                                       Container(
                                                         margin: const EdgeInsets.only(
-                                                            top: 7),
+                                                            top: 0),
                                                         child: Text(
                                                           context.watch<Store1>().podDate[index],
                                                           style: TextStyle(
