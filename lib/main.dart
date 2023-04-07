@@ -712,7 +712,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Column(
                                       children: [
                                         SizedBox(
-                                          height: 140,
+                                          height: 139,
                                           width: 260,
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.circular(15),
@@ -726,7 +726,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         Container(
                                           margin: const EdgeInsets.only(top: 15),
-                                          height: 100,
+                                          height: 85,
                                           width: 230,
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment
@@ -745,7 +745,7 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                height: 45,
+                                                height: 43,
                                                 child: Text(
                                                     context.read<Store2>().title![index][0]['title'],
                                                     maxLines: 2,
@@ -758,7 +758,7 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                               Container(
-                                                margin: const EdgeInsets.only(top: 10),
+                                                margin: const EdgeInsets.only(top: 5),
                                                 child: Text(
                                                   context.read<Store2>().read[index][0]['title'],
                                                   style: const TextStyle(
