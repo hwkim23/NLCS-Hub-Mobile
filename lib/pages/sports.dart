@@ -344,7 +344,6 @@ class _ItemTileState extends State<ItemTile> {
           margin: EdgeInsets.only(top: 1.h),
           duration: const Duration(milliseconds: 200),
           height: widget.expanded[widget.index]
-          // TODO: 갯수에 따라 다르게 만들기
               ? date.isNotEmpty ? date.length==1 ? 25.65.h : 25.65.h+(19.h*(date.length-1)) : 9.h
               : 9.h,
           child: Card(
@@ -915,7 +914,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 15.sp
+                                          fontSize: 14.sp
                                       ),
                                     )
                                 ),
@@ -934,7 +933,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                           "${score[index][0]}",
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 21.sp
+                                              fontSize: 20.sp
                                           ),
                                         ),
                                         const VerticalDivider(
@@ -946,7 +945,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                           "${score[index][1]}",
                                           style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 21.sp
+                                              fontSize: 20.sp
                                           ),
                                         )
                                       ],
@@ -963,7 +962,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 15.sp
+                                          fontSize: 14.sp
                                       ),
                                     )
                                 ),
