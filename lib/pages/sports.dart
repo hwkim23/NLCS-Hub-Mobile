@@ -411,7 +411,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   Color gsis = const Color(0xff522480);
   Color sis = const Color(0xffD77D48);
   Color bfs = const Color(0xff292A6B);
-  Color isb = const Color(0xff901823);
+  Color isb = const Color.fromARGB(255, 181, 39, 51);
   Color fps = const Color(0xffA68845);
 
   List<String> logoUrl = [];
@@ -547,7 +547,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
             }
           }
         }
-      } else if (separate[2] == "Rugby") {
+      } /*else if (separate[2] == "Rugby") {
         if (separate[0] == "Boys") {
           if (separate[separate.length - 1] == "A") {
             if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "rugby") {
@@ -699,7 +699,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
             }
           }
         }
-      }
+      }*/
     }
 
     setState(() {
@@ -1265,23 +1265,6 @@ class _SportsState extends State<Sports> {
                               return ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: 4,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Volleyball A',
-                                    'Boys HS Volleyball B',
-                                    'Girls HS Volleyball A',
-                                    'Girls HS Volleyball B',
-                                  ];
-                                  return ItemTile(competitions: subCategoryVolleyball, division: divisions[index], index: 0, expanded: expanded);
-                                },
-                              );
-                            } else if (select == 1) {
-                              //List<bool> expanded = [false, false, false, false, false, false, false];
-                              List<bool> expanded = [false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
                                 itemCount: 3,
                                 itemBuilder: (BuildContext context, int index) {
                                   List<String> divisions = [
@@ -1292,10 +1275,9 @@ class _SportsState extends State<Sports> {
                                   return ItemTile(competitions: subCategoryFootball, division: divisions[index], index: 1, expanded: expanded);
                                 },
                               );
-                            } //else if (select == 2) {
-                              else {
+                            } else if (select == 1) {
                               //List<bool> expanded = [false, false, false, false, false, false, false];
-                              List<bool> expanded = [false, false, false, false];
+                              List<bool> expanded = [false, false, false];
                               return ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
@@ -1308,6 +1290,24 @@ class _SportsState extends State<Sports> {
                                     'Girls HS Basketball B',
                                   ];
                                   return ItemTile(competitions: subCategoryBasketball, division: divisions[index], index: 2, expanded: expanded);
+                                },
+                              );
+                            } //else if (select == 2) {
+                              else {
+                              //List<bool> expanded = [false, false, false, false, false, false, false];
+                              List<bool> expanded = [false, false, false, false];
+                              return ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: 4,
+                                itemBuilder: (BuildContext context, int index) {
+                                  List<String> divisions = [
+                                    'Boys HS Volleyball A',
+                                    'Boys HS Volleyball B',
+                                    'Girls HS Volleyball A',
+                                    'Girls HS Volleyball B',
+                                  ];
+                                  return ItemTile(competitions: subCategoryVolleyball, division: divisions[index], index: 0, expanded: expanded);
                                 },
                               );
                             } /*else if (select == 3) {
