@@ -411,6 +411,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   Color gsis = const Color(0xff522480);
   Color sis = const Color(0xffD77D48);
   Color bfs = const Color(0xff292A6B);
+  Color isb = const Color(0xff901823);
 
   List<String> logoUrl = [];
   List<String> date = [];
@@ -880,7 +881,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                       end: Alignment.centerRight,
                       colors: [
                         nlcs,
-                        opp[index]=="bfs" ? bfs : opp[index]=="sja" ? sja : opp[index]=="kisj" ? kisj : opp[index]=="bha" ? bha : opp[index]=="kis" ? kis : opp[index]=="bis" ? bis : opp[index]=="gsis" ? gsis : sis
+                        opp[index]=="isb" ? isb : opp[index]=="bfs" ? bfs : opp[index]=="sja" ? sja : opp[index]=="kisj" ? kisj : opp[index]=="bha" ? bha : opp[index]=="kis" ? kis : opp[index]=="bis" ? bis : opp[index]=="gsis" ? gsis : sis
                       ],
                     )
                 ),
