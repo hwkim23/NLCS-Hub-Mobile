@@ -73,7 +73,7 @@ class Store1 extends ChangeNotifier {
       nextCompetition = data?['nextCompetition'];
     }
 
-    await firestore.collection("sport").orderBy('date').get().then((QuerySnapshot ds) {
+    await firestore.collection("sport").orderBy('date', descending: true).get().then((QuerySnapshot ds) {
       for (var doc in ds.docs) {
         sport.add(doc["sportsType"]);
         tournament.add(doc["category"]);
