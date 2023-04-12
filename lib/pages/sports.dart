@@ -881,7 +881,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                       end: Alignment.centerRight,
                       colors: [
                         nlcs,
-                        opp[index]=="isb" ? isb : opp[index]=="bfs" ? bfs : opp[index]=="sja" ? sja : opp[index]=="kisj" ? kisj : opp[index]=="bha" ? bha : opp[index]=="kis" ? kis : opp[index]=="bis" ? bis : opp[index]=="gsis" ? gsis : sis
+                        opp[index]=="nlcs" ? nlcs : opp[index]=="isb" ? isb : opp[index]=="bfs" ? bfs : opp[index]=="sja" ? sja : opp[index]=="kisj" ? kisj : opp[index]=="bha" ? bha : opp[index]=="kis" ? kis : opp[index]=="bis" ? bis : opp[index]=="gsis" ? gsis : sis
                       ],
                     )
                 ),
