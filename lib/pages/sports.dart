@@ -1076,13 +1076,14 @@ class _SportsState extends State<Sports> {
   static const subCategoryFootball = <String>['All', 'Friendly', 'PSG Academy Tournament'];
   static const subCategoryVolleyball = <String>['All', 'Friendly', 'KISAC', 'JIT', 'Jeju Sports Festival'];
   static const subCategoryBasketball = <String>['All', 'Friendly'];
-  static const subCategoryRugby = <String>['All', 'Jeju Sports Festival'];
-  static const subCategoryTennis = <String>['All', 'Friendly', 'KISAC'];
-  static const subCategoryBadminton = <String>['All', 'Friendly', 'KISAC'];
-  static const subCategoryTabletennis = <String>['All', 'Friendly', 'KISAC'];
+  //static const subCategoryRugby = <String>['All', 'Jeju Sports Festival'];
+  //static const subCategoryTennis = <String>['All', 'Friendly', 'KISAC'];
+  //static const subCategoryBadminton = <String>['All', 'Friendly', 'KISAC'];
+  //static const subCategoryTabletennis = <String>['All', 'Friendly', 'KISAC'];
 
-  List<String> label = ["Volleyball", "Football", "Basketball", "Rugby", "Tennis", "Badminton", "Table Tennis"];
-  List<IconData> listOfChipNames = [
+  //List<String> label = ["Volleyball", "Football", "Basketball", "Rugby", "Tennis", "Badminton", "Table Tennis"];
+  List<String> label = ["Football", "Basketball", "Volleyball"];
+  /*List<IconData> listOfChipNames = [
     Icons.sports_volleyball,
     Icons.sports_soccer,
     Icons.sports_basketball,
@@ -1090,6 +1091,11 @@ class _SportsState extends State<Sports> {
     Icons.sports_baseball,
     Icons.sports_mma,
     Icons.sports_tennis
+  ];*/
+  List<IconData> listOfChipNames = [
+    Icons.sports_soccer,
+    Icons.sports_basketball,
+    Icons.sports_volleyball
   ];
   bool supportsMultiSelect = false;
   List<Color> inactiveBgColorList = const [Color.fromRGBO(241, 242, 246, 1.0)];
@@ -1254,7 +1260,8 @@ class _SportsState extends State<Sports> {
                         LayoutBuilder(
                           builder: (context, constraints) {
                             if (select == 0) {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
+                              //List<bool> expanded = [false, false, false, false, false, false, false];
+                              List<bool> expanded = [false, false, false];
                               return ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
@@ -1270,7 +1277,8 @@ class _SportsState extends State<Sports> {
                                 },
                               );
                             } else if (select == 1) {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
+                              //List<bool> expanded = [false, false, false, false, false, false, false];
+                              List<bool> expanded = [false, false, false];
                               return ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
@@ -1284,8 +1292,10 @@ class _SportsState extends State<Sports> {
                                   return ItemTile(competitions: subCategoryFootball, division: divisions[index], index: 1, expanded: expanded);
                                 },
                               );
-                            } else if (select == 2) {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
+                            } //else if (select == 2) {
+                              else {
+                              //List<bool> expanded = [false, false, false, false, false, false, false];
+                              List<bool> expanded = [false, false, false, false];
                               return ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
@@ -1300,7 +1310,7 @@ class _SportsState extends State<Sports> {
                                   return ItemTile(competitions: subCategoryBasketball, division: divisions[index], index: 2, expanded: expanded);
                                 },
                               );
-                            } else if (select == 3) {
+                            } /*else if (select == 3) {
                               List<bool> expanded = [false, false, false, false, false, false, false];
                               return ListView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
@@ -1362,7 +1372,7 @@ class _SportsState extends State<Sports> {
                                   return ItemTile(competitions: subCategoryTabletennis, division: divisions[index], index: 6, expanded: expanded);
                                 },
                               );
-                            }
+                            }*/
                           },
                         )
                       ],
