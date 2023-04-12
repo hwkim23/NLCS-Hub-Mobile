@@ -410,6 +410,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   Color bis = Colors.black;
   Color gsis = const Color(0xff522480);
   Color sis = const Color(0xffD77D48);
+  Color bfs = const Color(0xff292A6B);
 
   List<String> logoUrl = [];
   List<String> date = [];
