@@ -16,15 +16,16 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'dart:io';
 
 class BaseDrawer extends StatelessWidget {
-  const BaseDrawer({Key? key,
+  const BaseDrawer({
+    Key? key,
     required this.drawer,
   }) : super(key: key);
 
   final Drawer drawer;
 
   void openPDF(BuildContext context, File file) => Navigator.of(context).push(
-    MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
-  );
+        MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +46,7 @@ class BaseDrawer extends StatelessWidget {
                     height: 7.h,
                   ),
                 ),
-              )
-          ),
+              )),
           Expanded(
               flex: 4,
               child: ListView(
@@ -61,9 +61,11 @@ class BaseDrawer extends StatelessWidget {
                   ),*/
                   ListTile(
                     title: const Text("This Week's Menu"),
-                    leading: const Icon(Icons.restaurant_menu, color: Colors.black),
+                    leading:
+                        const Icon(Icons.restaurant_menu, color: Colors.black),
                     onTap: () async {
-                      Fluttertoast.showToast(msg: "Loading, please wait.", fontSize: 18.0);
+                      Fluttertoast.showToast(
+                          msg: "Loading, please wait.", fontSize: 18.0);
                       const url = 'menu.pdf';
                       final file = await PDFApi.loadFirebase(url);
                       if (file == null) return;
@@ -74,55 +76,91 @@ class BaseDrawer extends StatelessWidget {
                     title: const Text("Bulletin"),
                     leading: const Icon(Icons.message, color: Colors.black),
                     onTap: () async {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BulletinCall()), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BulletinCall()),
+                          (route) => false);
                     },
                   ),
                   ListTile(
                     title: const Text("Sports"),
                     leading: const Icon(Icons.sports, color: Colors.black),
                     onTap: () async {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SportsCall()), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SportsCall()),
+                          (route) => false);
                     },
                   ),
                   ExpansionTile(
                     textColor: Colors.black,
                     iconColor: Colors.black,
                     title: const Text('Categories'),
-                    leading: const Icon(Icons.category, color: Colors.black,),
-                    children: <Widget> [
+                    leading: const Icon(
+                      Icons.category,
+                      color: Colors.black,
+                    ),
+                    children: <Widget>[
                       ListTile(
                         leading: const Text(""),
-                        title: const Text("STEM", style: TextStyle(color: Color(0xff343434))),
+                        title: const Text("STEM",
+                            style: TextStyle(color: Color(0xff343434))),
                         onTap: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const STEM()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const STEM()),
+                              (route) => false);
                         },
                       ),
                       ListTile(
                         leading: const Text(""),
-                        title: const Text("Humanities", style: TextStyle(color: Color(0xff343434))),
+                        title: const Text("Humanities",
+                            style: TextStyle(color: Color(0xff343434))),
                         onTap: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Humanities()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Humanities()),
+                              (route) => false);
                         },
                       ),
                       ListTile(
                         leading: const Text(""),
-                        title: const Text("Languages", style: TextStyle(color: Color(0xff343434))),
+                        title: const Text("Languages",
+                            style: TextStyle(color: Color(0xff343434))),
                         onTap: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Languages()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Languages()),
+                              (route) => false);
                         },
                       ),
                       ListTile(
                         leading: const Text(""),
-                        title: const Text("Arts", style: TextStyle(color: Color(0xff343434))),
+                        title: const Text("Arts",
+                            style: TextStyle(color: Color(0xff343434))),
                         onTap: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Arts()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Arts()),
+                              (route) => false);
                         },
                       ),
                       ListTile(
                         leading: const Text(""),
-                        title: const Text("TOK", style: TextStyle(color: Color(0xff343434))),
+                        title: const Text("TOK",
+                            style: TextStyle(color: Color(0xff343434))),
                         onTap: () {
-                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const TOK()), (route) => false);
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TOK()),
+                              (route) => false);
                         },
                       ),
                     ],
@@ -131,19 +169,26 @@ class BaseDrawer extends StatelessWidget {
                     title: const Text("Beyond the Classroom"),
                     leading: const Icon(Icons.public, color: Colors.black),
                     onTap: () {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BeyondTheClassroom()), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BeyondTheClassroom()),
+                          (route) => false);
                     },
                   ),
                   ListTile(
                     title: const Text("Spatium: Podcast"),
                     leading: const Icon(Icons.podcasts, color: Colors.black),
                     onTap: () {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Spatium()), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Spatium()),
+                          (route) => false);
                     },
                   )
                 ],
-              )
-          ),
+              )),
           /*Container(
             color: Colors.black,
             width: double.infinity,
@@ -168,8 +213,6 @@ class BaseDrawer extends StatelessWidget {
                 ],
               )
           ),*/
-        ]
-        )
-    );
+        ]));
   }
 }

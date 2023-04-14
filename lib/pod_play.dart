@@ -6,7 +6,13 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'myAppBar.dart';
 
 class PodPlay extends StatefulWidget {
-  const PodPlay({Key? key,required this.podTitle, required this.podDate, required this.podUrl, required this.imgUrl}) : super(key: key);
+  const PodPlay(
+      {Key? key,
+      required this.podTitle,
+      required this.podDate,
+      required this.podUrl,
+      required this.imgUrl})
+      : super(key: key);
 
   final String podTitle;
   final String podDate;
@@ -39,28 +45,28 @@ class _PodPlayState extends State<PodPlay> {
   @override
   void initState() {
     super.initState();
-    
+
     setAudio();
-    
+
     audioPlayer.onPlayerStateChanged.listen((state) {
       setState(() {
         isPlaying = state == PlayerState.playing;
       });
     });
-    
+
     audioPlayer.onDurationChanged.listen((newDuration) {
       setState(() {
         duration = newDuration;
       });
     });
-    
+
     audioPlayer.onPositionChanged.listen((newPosition) {
       setState(() {
         position = newPosition;
       });
     });
   }
-  
+
   Future setAudio() async {
     audioPlayer.setSourceUrl(widget.podUrl);
   }
@@ -115,9 +121,7 @@ class _PodPlayState extends State<PodPlay> {
                       widget.podDate,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 16.sp,
-                          color: const Color(0xffA3A3A3)
-                      ),
+                          fontSize: 16.sp, color: const Color(0xffA3A3A3)),
                     ),
                   ),
                   Container(
@@ -143,16 +147,12 @@ class _PodPlayState extends State<PodPlay> {
                         Text(
                           formatTime(position),
                           style: TextStyle(
-                              fontSize: 15.sp,
-                              color: const Color(0xffA3A3A3)
-                          ),
+                              fontSize: 15.sp, color: const Color(0xffA3A3A3)),
                         ),
                         Text(
                           formatTime(duration - position),
                           style: TextStyle(
-                              fontSize: 15.sp,
-                              color: const Color(0xffA3A3A3)
-                          ),
+                              fontSize: 15.sp, color: const Color(0xffA3A3A3)),
                         ),
                       ],
                     ),
@@ -164,7 +164,9 @@ class _PodPlayState extends State<PodPlay> {
                         radius: 35,
                         child: IconButton(
                           icon: Icon(
-                            isPlaying ? Icons.pause_outlined : Icons.play_arrow_outlined,
+                            isPlaying
+                                ? Icons.pause_outlined
+                                : Icons.play_arrow_outlined,
                           ),
                           iconSize: 50,
                           onPressed: () async {

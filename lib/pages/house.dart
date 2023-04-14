@@ -8,9 +8,7 @@ class House extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Color.fromRGBO(241, 242, 246, 1.0),
       body: SafeArea(
-        child: Center(
-          child: Text("Coming Soon")
-        ),
+        child: Center(child: Text("Coming Soon")),
       ),
     );
   }

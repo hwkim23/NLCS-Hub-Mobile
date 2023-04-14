@@ -49,7 +49,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 //Lottie
 import 'package:lottie/lottie.dart';
 
-List<String> features = ['/languages/2561/', '/languages/2552/', '/languages/2543/', '/stem/2537/'];
+List<String> features = [
+  '/languages/2561/',
+  '/languages/2552/',
+  '/languages/2543/',
+  '/stem/2537/'
+];
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,20 +65,17 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (c) => Store1()),
-          ChangeNotifierProvider(create: (c) => Store2()),
-        ],
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: style.theme,
-            title: 'NLCS Hub Mobile',
-            home: const MyApp()
-        )
-      )
-  ));
+  ]).then((value) => runApp(MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (c) => Store1()),
+            ChangeNotifierProvider(create: (c) => Store2()),
+            ChangeNotifierProvider(create: (c) => Store3())
+          ],
+          child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: style.theme,
+              title: 'NLCS Hub Mobile',
+              home: const MyApp()))));
 }
 
 class MyApp extends StatefulWidget {
@@ -84,7 +86,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -99,11 +100,15 @@ class _MyAppState extends State<MyApp> {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return FutureBuilder<bool>(
-            future: context.read<Store1>().getData(),
-            builder: (context, AsyncSnapshot<bool> snapshot) {
-              if (!snapshot.hasData) {return Container(color: const Color.fromRGBO(241, 242, 246, 1.0), child: Center(child: Lottie.asset('assets/lottie.json')));}
-              return const HomePagePage();
-            },
+          future: context.read<Store1>().getData(),
+          builder: (context, AsyncSnapshot<bool> snapshot) {
+            if (!snapshot.hasData) {
+              return Container(
+                  color: const Color.fromRGBO(241, 242, 246, 1.0),
+                  child: Center(child: Lottie.asset('assets/lottie.json')));
+            }
+            return const HomePagePage();
+          },
         );
       },
     );
@@ -125,6 +130,11 @@ class _HomePagePageState extends State<HomePagePage> {
 
   int _selectedIndex = 1;
 
+  @override
+  void initState() {
+    context.read<Store3>().getSportsData();
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -132,28 +142,26 @@ class _HomePagePageState extends State<HomePagePage> {
   }
 
   void openPDF(BuildContext context, File file) => Navigator.of(context).push(
-    MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
-  );
+        MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
+      );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, 
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
-      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      appBar: BaseAppBar(
+          appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
       body: SafeArea(
-        child: LayoutBuilder(
-            builder: (context, constraints) {
-              if (_selectedIndex == 0) {
-                return const Sports();
-              } else if (_selectedIndex == 1) {
-                return const HomePage();
-              }
-              else {
-                return const Bulletin();
-              }
-            }
-        ),
+        child: LayoutBuilder(builder: (context, constraints) {
+          if (_selectedIndex == 0) {
+            return const Sports();
+          } else if (_selectedIndex == 1) {
+            return const HomePage();
+          } else {
+            return const Bulletin();
+          }
+        }),
       ),
       drawer: const BaseDrawer(drawer: Drawer()),
       bottomNavigationBar: BottomNavigationBar(
@@ -181,7 +189,9 @@ class _HomePagePageState extends State<HomePagePage> {
 
 //Expansion tile
 class ItemTile extends StatefulWidget {
-  const ItemTile({super.key,});
+  const ItemTile({
+    super.key,
+  });
 
   @override
   _ItemTileState createState() => _ItemTileState();
@@ -219,7 +229,7 @@ class _ItemTileState extends State<ItemTile> {
   Widget build(BuildContext context) {
     getMax();
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         setState(() {
           _expanded = !_expanded;
         });
@@ -230,9 +240,7 @@ class _ItemTileState extends State<ItemTile> {
         ),
         margin: EdgeInsets.only(top: 2.5.h, bottom: 2.5.h),
         duration: const Duration(milliseconds: 200),
-        height: _expanded
-            ? 40.h
-            : 9.h,
+        height: _expanded ? 40.h : 9.h,
         child: Card(
           color: Colors.white,
           shape: RoundedRectangleBorder(
@@ -252,19 +260,19 @@ class _ItemTileState extends State<ItemTile> {
                         style: TextStyle(fontSize: 20.sp),
                       ),
                       _expanded
-                        ? const Icon(Icons.expand_less)
-                        : const Icon(Icons.expand_more),
+                          ? const Icon(Icons.expand_less)
+                          : const Icon(Icons.expand_more),
                     ],
                   ),
                 ),
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  height: _expanded
-                      ? 25.h
-                      : 0,
+                  height: _expanded ? 25.h : 0,
                   width: 80.w,
                   child: _expanded
-                      ? ItemExpandedTile(max: max,)
+                      ? ItemExpandedTile(
+                          max: max,
+                        )
                       : const SizedBox(height: 0.00),
                 ),
                 Container(
@@ -280,7 +288,7 @@ class _ItemTileState extends State<ItemTile> {
                               style: TextStyle(fontSize: 17.sp),
                             ),
                           ],
-                  )
+                        )
                       : const SizedBox(height: 0.00),
                 )
               ],
@@ -294,27 +302,30 @@ class _ItemTileState extends State<ItemTile> {
 
 //Widget which is shown after expanding
 class ItemExpandedTile extends StatelessWidget {
-  const ItemExpandedTile({super.key,
-    required this.max
-  });
+  const ItemExpandedTile({super.key, required this.max});
 
   final double max;
 
   @override
   Widget build(BuildContext context) {
-    return _BarChart(jeoji: context.read<Store1>().jeoji, geomun: context.read<Store1>().geomun, sarah: context.read<Store1>().sarah, mulchat: context.read<Store1>().mulchat, noro: context.read<Store1>().noro, max: max);
+    return _BarChart(
+        jeoji: context.read<Store1>().jeoji,
+        geomun: context.read<Store1>().geomun,
+        sarah: context.read<Store1>().sarah,
+        mulchat: context.read<Store1>().mulchat,
+        noro: context.read<Store1>().noro,
+        max: max);
   }
 }
 
 class _BarChart extends StatelessWidget {
-  const _BarChart({
-    required this.jeoji,
-    required this.geomun,
-    required this.sarah,
-    required this.mulchat,
-    required this.noro,
-    required this.max
-  });
+  const _BarChart(
+      {required this.jeoji,
+      required this.geomun,
+      required this.sarah,
+      required this.mulchat,
+      required this.noro,
+      required this.max});
 
   final double jeoji;
   final double geomun;
@@ -333,6 +344,7 @@ class _BarChart extends StatelessWidget {
         barGroups: barGroups,
         gridData: FlGridData(show: false),
         alignment: BarChartAlignment.spaceAround,
+
         ///Score이 270점을 넘지 않는다는 가정하에
         maxY: 350,
       ),
@@ -340,27 +352,27 @@ class _BarChart extends StatelessWidget {
   }
 
   BarTouchData get barTouchData => BarTouchData(
-    enabled: false,
-    touchTooltipData: BarTouchTooltipData(
-      tooltipBgColor: Colors.transparent,
-      tooltipPadding: EdgeInsets.zero,
-      tooltipMargin: 8,
-      getTooltipItem: (
-          BarChartGroupData group,
-          int groupIndex,
-          BarChartRodData rod,
-          int rodIndex,
+        enabled: false,
+        touchTooltipData: BarTouchTooltipData(
+          tooltipBgColor: Colors.transparent,
+          tooltipPadding: EdgeInsets.zero,
+          tooltipMargin: 8,
+          getTooltipItem: (
+            BarChartGroupData group,
+            int groupIndex,
+            BarChartRodData rod,
+            int rodIndex,
           ) {
-        return BarTooltipItem(
-          rod.toY.round().toString(),
-          const TextStyle(
-            color: Color(0xff1e73be),
-            fontWeight: FontWeight.bold,
-          ),
-        );
-      },
-    ),
-  );
+            return BarTooltipItem(
+              rod.toY.round().toString(),
+              const TextStyle(
+                color: Color(0xff1e73be),
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          },
+        ),
+      );
 
   Widget getTitles(double value, TitleMeta meta) {
     IconData? icon;
@@ -399,141 +411,141 @@ class _BarChart extends StatelessWidget {
   }
 
   FlTitlesData get titlesData => FlTitlesData(
-    show: true,
-    bottomTitles: AxisTitles(
-      sideTitles: SideTitles(
-        showTitles: true,
-        reservedSize: 30,
-        getTitlesWidget: getTitles,
-      ),
-    ),
-    leftTitles: AxisTitles(
-      sideTitles: SideTitles(showTitles: false),
-    ),
-    topTitles: AxisTitles(
-      sideTitles: SideTitles(showTitles: false),
-    ),
-    rightTitles: AxisTitles(
-      sideTitles: SideTitles(showTitles: false),
-    ),
-  );
+        show: true,
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 30,
+            getTitlesWidget: getTitles,
+          ),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        rightTitles: AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+      );
 
   FlBorderData get borderData => FlBorderData(
-    show: false,
-  );
+        show: false,
+      );
 
   LinearGradient get _barsGradientJ => const LinearGradient(
-    colors: [
-      Color.fromRGBO(204, 204, 204, 204.26),
-      //Color(0xffffffff),
-      Color.fromRGBO(149, 149, 149, 1)
-      //Color(0xfff3bd34)
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topCenter,
-  );
+        colors: [
+          Color.fromRGBO(204, 204, 204, 204.26),
+          //Color(0xffffffff),
+          Color.fromRGBO(149, 149, 149, 1)
+          //Color(0xfff3bd34)
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
 
   LinearGradient get _barsGradientG => const LinearGradient(
-    colors: [
-      Color.fromRGBO(204, 204, 204, 204.26),
-      //Color(0xffffffff),
-      Color.fromRGBO(149, 149, 149, 1)
-      //Color(0xff30a1ee)
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topCenter,
-  );
+        colors: [
+          Color.fromRGBO(204, 204, 204, 204.26),
+          //Color(0xffffffff),
+          Color.fromRGBO(149, 149, 149, 1)
+          //Color(0xff30a1ee)
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
 
   LinearGradient get _barsGradientS => const LinearGradient(
-    colors: [
-      Color.fromRGBO(204, 204, 204, 204.26),
-      //Color(0xffffffff),
-      Color.fromRGBO(149, 149, 149, 1)
-      //Color(0xffd4251e)
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topCenter,
-  );
+        colors: [
+          Color.fromRGBO(204, 204, 204, 204.26),
+          //Color(0xffffffff),
+          Color.fromRGBO(149, 149, 149, 1)
+          //Color(0xffd4251e)
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
 
   LinearGradient get _barsGradientM => const LinearGradient(
-    colors: [
-      Color.fromRGBO(204, 204, 204, 204.26),
-      //Color(0xffffffff),
-      Color.fromRGBO(149, 149, 149, 1)
-      //Color(0xff387b2c)
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topCenter,
-  );
+        colors: [
+          Color.fromRGBO(204, 204, 204, 204.26),
+          //Color(0xffffffff),
+          Color.fromRGBO(149, 149, 149, 1)
+          //Color(0xff387b2c)
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
 
   LinearGradient get _barsGradientN => const LinearGradient(
-    colors: [
-      Color.fromRGBO(204, 204, 204, 204.26),
-      //Color(0xffffffff),
-      Color.fromRGBO(149, 149, 149, 1)
-      //Color(0xff65449e)
-    ],
-    begin: Alignment.bottomCenter,
-    end: Alignment.topCenter,
-  );
+        colors: [
+          Color.fromRGBO(204, 204, 204, 204.26),
+          //Color(0xffffffff),
+          Color.fromRGBO(149, 149, 149, 1)
+          //Color(0xff65449e)
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      );
 
   List<BarChartGroupData> get barGroups => [
-    BarChartGroupData(
-      x: 0,
-      barRods: [
-        BarChartRodData(
-          toY: jeoji,
-          gradient: _barsGradientJ,
-          width: 6.w,
-        )
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 1,
-      barRods: [
-        BarChartRodData(
-          toY: geomun,
-          gradient: _barsGradientG,
-          width: 6.w,
-        )
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 2,
-      barRods: [
-        BarChartRodData(
-          toY: sarah,
-          gradient: _barsGradientS,
-          width:6.w,
-        )
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 3,
-      barRods: [
-        BarChartRodData(
-          toY: mulchat,
-          gradient: _barsGradientM,
-          width: 6.w,
-        )
-      ],
-      showingTooltipIndicators: [0],
-    ),
-    BarChartGroupData(
-      x: 4,
-      barRods: [
-        BarChartRodData(
-          toY: noro,
-          gradient: _barsGradientN,
-          width: 6.w,
-        )
-      ],
-      showingTooltipIndicators: [0],
-    ),
-  ];
+        BarChartGroupData(
+          x: 0,
+          barRods: [
+            BarChartRodData(
+              toY: jeoji,
+              gradient: _barsGradientJ,
+              width: 6.w,
+            )
+          ],
+          showingTooltipIndicators: [0],
+        ),
+        BarChartGroupData(
+          x: 1,
+          barRods: [
+            BarChartRodData(
+              toY: geomun,
+              gradient: _barsGradientG,
+              width: 6.w,
+            )
+          ],
+          showingTooltipIndicators: [0],
+        ),
+        BarChartGroupData(
+          x: 2,
+          barRods: [
+            BarChartRodData(
+              toY: sarah,
+              gradient: _barsGradientS,
+              width: 6.w,
+            )
+          ],
+          showingTooltipIndicators: [0],
+        ),
+        BarChartGroupData(
+          x: 3,
+          barRods: [
+            BarChartRodData(
+              toY: mulchat,
+              gradient: _barsGradientM,
+              width: 6.w,
+            )
+          ],
+          showingTooltipIndicators: [0],
+        ),
+        BarChartGroupData(
+          x: 4,
+          barRods: [
+            BarChartRodData(
+              toY: noro,
+              gradient: _barsGradientN,
+              width: 6.w,
+            )
+          ],
+          showingTooltipIndicators: [0],
+        ),
+      ];
 }
 
 class HomePage extends StatefulWidget {
@@ -550,17 +562,25 @@ class _HomePageState extends State<HomePage> {
 
   Future<List<Map<String, dynamic>>> fetchParagraph(String url) async {
     late List<Map<String, dynamic>> paragraph;
-    if (await webScraper
-        .loadWebPage(url)) {
-      paragraph = webScraper.getElement(
-          'div.entry-content > p', ["style"]);
+    if (await webScraper.loadWebPage(url)) {
+      paragraph = webScraper.getElement('div.entry-content > p', ["style"]);
     }
     return paragraph;
   }
 
   void put(url, title, category, imageURL, date) async {
     final fetchedParagraph = await fetchParagraph(url);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Article(url: url, title: title, category: category, imageURL: imageURL, date: date, paragraph: fetchedParagraph,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Article(
+                  url: url,
+                  title: title,
+                  category: category,
+                  imageURL: imageURL,
+                  date: date,
+                  paragraph: fetchedParagraph,
+                )));
   }
 
   static const imgs = <String>[
@@ -572,218 +592,229 @@ class _HomePageState extends State<HomePage> {
   ];
 
   void openPDF(BuildContext context, File file) => Navigator.of(context).push(
-    MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
-  );
+        MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
+      );
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Center(
+      padding: EdgeInsets.symmetric(horizontal: 5.w),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(top: 3.h),
+                child: SvgPicture.asset(
+                  'assets/logo.svg',
+                  height: 7.h,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 3.h),
+              child: Text(
+                "This Week's Bulletin",
+                style: TextStyle(fontSize: 20.sp),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 2.h),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                height: 9.h,
+                width: 100.w,
+                child: GestureDetector(
+                  onTap: () async {
+                    Fluttertoast.showToast(
+                        msg: "Loading, please wait.", fontSize: 18.0);
+                    String url = context.read<Store1>().path[0];
+                    final file = await PDFApi.loadFirebase(url);
+                    if (file == null) return;
+                    openPDF(context, file);
+                  },
+                  child: Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
                     child: Container(
-                      margin: EdgeInsets.only(top: 3.h),
-                      child: SvgPicture.asset(
-                        'assets/logo.svg',
-                        height: 7.h,
+                      padding:
+                          EdgeInsets.only(top: 2.7.h, left: 5.w, right: 5.w),
+                      child: Text(
+                        context.watch<Store1>().title[0],
+                        textAlign: TextAlign.start,
+                        style: TextStyle(fontSize: 17.sp),
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 3.h),
-                    child: Text(
-                      "This Week's Bulletin",
-                      style: TextStyle(fontSize: 20.sp),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 2.h),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      height: 9.h,
-                      width: 100.w,
-                      child: GestureDetector(
-                        onTap: () async {
-                          Fluttertoast.showToast(msg: "Loading, please wait.", fontSize: 18.0);
-                          String url = context.read<Store1>().path[0];
-                          final file = await PDFApi.loadFirebase(url);
-                          if (file == null) return;
-                          openPDF(context, file);
+                ),
+              ),
+            ),
+            const ItemTile(),
+            Text(
+              'Explore',
+              style: TextStyle(fontSize: 20.sp),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 2.h),
+              height: 12.h,
+              child: ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    List categories = [
+                      ["STEM", const STEM()],
+                      ["Humanities", const Humanities()],
+                      ["Languages", const Languages()],
+                      ["Arts", const Arts()],
+                      ["TOK", const TOK()]
+                    ];
+                    return Padding(
+                      padding: EdgeInsets.only(right: 3.h),
+                      child: CircularProfileAvatar(
+                        imgs[index],
+                        radius: 6.h,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => categories[index][1]));
                         },
-                        child: Card(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Container(
-                            padding: EdgeInsets.only(top: 2.7.h, left: 5.w, right: 5.w),
-                            child: Text(
-                              context.watch<Store1>().title[0],
-                              textAlign: TextAlign.start,
-                              style: TextStyle(fontSize: 17.sp),
-                            ),
-                          ),
+                        initialsText: Text(
+                          categories[index][0],
+                          style:
+                              TextStyle(fontSize: 15.sp, color: Colors.white),
                         ),
+                        showInitialTextAbovePicture: true,
+                        cacheImage: true,
                       ),
-                    ),
-                  ),
-                  const ItemTile(),
-                  Text(
-                    'Explore',
-                    style: TextStyle(fontSize: 20.sp),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 2.h),
-                    height: 12.h,
-                    child: ListView.builder(
-                        physics: const ClampingScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        itemBuilder: (BuildContext context, int index) {
-                          List categories = [
-                            ["STEM", const STEM()],
-                            ["Humanities", const Humanities()],
-                            ["Languages", const Languages()],
-                            ["Arts", const Arts()],
-                            ["TOK", const TOK()]
-                          ];
-                          return Padding(
-                            padding: EdgeInsets.only(right: 3.h),
-                            child: CircularProfileAvatar(
-                              imgs[index],
-                              radius: 6.h,
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => categories[index][1]));
-                              },
-                              initialsText: Text(
-                                categories[index][0],
-                                style: TextStyle(fontSize: 15.sp,
-                                    color: Colors.white),
-                              ),
-                              showInitialTextAbovePicture: true,
-                              cacheImage: true,
-                            ),
-                          );
-                        }
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 3.h),
-                    child: Text(
-                      'Featured Articles',
-                      style: TextStyle(fontSize: 20.sp),
-                    ),
-                  ),
-                  Container(
-                    height: 330,
-                    clipBehavior: Clip.none,
-                    child: ListView.builder(
-                        physics: const ClampingScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4,
-                        itemBuilder: (BuildContext context, int index) {
-                          Map<String, dynamic> attributes =
-                          context.watch<Store2>().image[index][0]['attributes'];
-                          return Padding(
-                            padding: EdgeInsets.only(
-                                right: 1.1.h, top: 2.h, bottom: 3.h),
+                    );
+                  }),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 3.h),
+              child: Text(
+                'Featured Articles',
+                style: TextStyle(fontSize: 20.sp),
+              ),
+            ),
+            Container(
+              height: 330,
+              clipBehavior: Clip.none,
+              child: ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    Map<String, dynamic> attributes =
+                        context.watch<Store2>().image[index][0]['attributes'];
+                    return Padding(
+                      padding:
+                          EdgeInsets.only(right: 1.1.h, top: 2.h, bottom: 3.h),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            put(
+                                features[index],
+                                context.read<Store2>().title![index][0]
+                                    ['title'],
+                                context.read<Store2>().category[index][0]
+                                    ['title'],
+                                attributes['src'],
+                                context.read<Store2>().date[index][0]['title']);
+                          },
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: GestureDetector(
-                                onTap: (){
-                                  put(features[index], context.read<Store2>().title![index][0]['title'], context.read<Store2>().category[index][0]['title'], attributes['src'], context.read<Store2>().date[index][0]['title']);
-                                },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Container(
+                              width: 260,
+                              padding: EdgeInsets.all(1.h),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 139,
                                     width: 260,
-
-                                    padding: EdgeInsets.all(1.h),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: CachedNetworkImage(
+                                        imageUrl: attributes['src'],
+                                        fit: BoxFit.cover,
+                                        placeholder: (context, url) =>
+                                            Container(
+                                                color: Colors.black
+                                                    .withOpacity(0.04)),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 15),
+                                    height: 85,
+                                    width: 230,
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(bottom: 3),
+                                          child: Text(
+                                              context
+                                                  .read<Store2>()
+                                                  .category[index][0]['title'],
+                                              style: const TextStyle(
+                                                  fontSize: 13,
+                                                  color: Color(0xffA3A3A3))),
+                                        ),
                                         SizedBox(
-                                          height: 139,
-                                          width: 260,
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(15),
-                                            child: CachedNetworkImage(
-                                              imageUrl: attributes['src'],
-                                              fit: BoxFit.cover,
-                                              placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                              errorWidget: (context, url, error) => const Icon(Icons.error),
-                                            ),
-                                          ),
+                                          height: 43,
+                                          child: Text(
+                                              context
+                                                  .read<Store2>()
+                                                  .title![index][0]['title'],
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  height: 1.3,
+                                                  color: Color(0xff343434))),
                                         ),
                                         Container(
-                                          margin: const EdgeInsets.only(top: 15),
-                                          height: 85,
-                                          width: 230,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .start,
-                                            children: [
-                                              Container(
-                                                margin: const EdgeInsets.only(
-                                                    bottom: 3),
-                                                child: Text(
-                                                    context.read<Store2>().category[index][0]['title'],
-                                                    style: const TextStyle(
-                                                        fontSize: 13,
-                                                        color: Color(
-                                                            0xffA3A3A3)
-                                                    )
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 43,
-                                                child: Text(
-                                                    context.read<Store2>().title![index][0]['title'],
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: const TextStyle(
-                                                        fontSize: 16,
-                                                        height: 1.3,
-                                                        color: Color(0xff343434)
-                                                    )
-                                                ),
-                                              ),
-                                              Container(
-                                                margin: const EdgeInsets.only(top: 5),
-                                                child: Text(
-                                                  context.read<Store2>().read[index][0]['title'],
-                                                  style: const TextStyle(
-                                                      fontSize: 13,
-                                                      color: Color(
-                                                          0xffA3A3A3)
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                          margin: const EdgeInsets.only(top: 5),
+                                          child: Text(
+                                            context.read<Store2>().read[index]
+                                                [0]['title'],
+                                            style: const TextStyle(
+                                                fontSize: 13,
+                                                color: Color(0xffA3A3A3)),
                                           ),
                                         )
                                       ],
                                     ),
-                                  ),
-                                ),
+                                  )
+                                ],
                               ),
                             ),
-                          );
-                        }
-                    ),
-                  )
-                ],
-              ),
-            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

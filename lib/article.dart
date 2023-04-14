@@ -1,14 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'myAppBar.dart';
-//import 'state.dart';
-//import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:web_scraper/web_scraper.dart';
 import 'package:lottie/lottie.dart';
 
 class Article extends StatefulWidget {
-  const Article({Key? key, required this.url, required this.title, required this.category, required this.imageURL, required this.date, this.paragraph}) : super(key: key);
+  const Article(
+      {Key? key,
+      required this.url,
+      required this.title,
+      required this.category,
+      required this.imageURL,
+      required this.date,
+      this.paragraph})
+      : super(key: key);
 
   final String url;
   final String title;
@@ -28,11 +34,9 @@ class _ArticleState extends State<Article> {
 
   void fetchData() async {
     // Loads web page and downloads into local state of library
-    if (await webScraper
-        .loadWebPage(widget.url)) {
+    if (await webScraper.loadWebPage(widget.url)) {
       setState(() {
-        paragraph = webScraper.getElement(
-            'div.entry-content > p', ["style"]);
+        paragraph = webScraper.getElement('div.entry-content > p', ["style"]);
       });
     }
   }
@@ -47,12 +51,12 @@ class _ArticleState extends State<Article> {
       if (paragraph![0]['title'].contains('img')) {
         paragraph!.removeAt(0);
       }
-      for (int i=0; i<paragraph!.length; i++) {
+      for (int i = 0; i < paragraph!.length; i++) {
         if (paragraph![i]['title'].contains('Bibliography')) {
           while (i < paragraph!.length) {
             paragraph!.removeAt(i);
           }
-          paragraph!.removeAt(i-1);
+          paragraph!.removeAt(i - 1);
         }
       }
     }
@@ -65,74 +69,72 @@ class _ArticleState extends State<Article> {
       appBar: BaseAppBar(appBar: AppBar(), color: Colors.white),
       body: SafeArea(
         child: paragraph == null
-                ? Center(child: Lottie.asset('assets/lottie.json'))
-                : Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Colors.white,
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.only(top: 3.h),
-                                child: Text(
-                                  widget.category,
-                                  style: TextStyle(fontSize: 16.sp, color: const Color(0xffA3A3A3)),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 2.h),
-                                child: Text(
-                                  widget.title,
-                                  style: TextStyle(fontSize: 19.sp),
-                                ),
-                              ),
-                              Text(
-                                widget.date,
-                                style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: const Color(0xffA3A3A3)
-                                ),
-                              ),
-                              ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: 1,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                    margin: EdgeInsets.symmetric(vertical: 2.h),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
-                                      child: CachedNetworkImage(
-                                        imageUrl: widget.imageURL,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              ),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: (paragraph!.length),
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return Container(
-                                      margin: EdgeInsets.only(bottom: 2.h),
-                                      child: Text(paragraph![index]['title'], style: TextStyle(
-                                          fontSize: 17.sp,
-                                          height: 2
-                                        ),
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    );
-                                  }),
-                            ],
+            ? Center(child: Lottie.asset('assets/lottie.json'))
+            : Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(top: 3.h),
+                          child: Text(
+                            widget.category,
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                color: const Color(0xffA3A3A3)),
                           ),
                         ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 2.h),
+                          child: Text(
+                            widget.title,
+                            style: TextStyle(fontSize: 19.sp),
+                          ),
+                        ),
+                        Text(
+                          widget.date,
+                          style: TextStyle(
+                              fontSize: 16.sp, color: const Color(0xffA3A3A3)),
+                        ),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: 1,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(vertical: 2.h),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: CachedNetworkImage(
+                                    imageUrl: widget.imageURL,
+                                  ),
+                                ),
+                              );
+                            }),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: (paragraph!.length),
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                margin: EdgeInsets.only(bottom: 2.h),
+                                child: Text(
+                                  paragraph![index]['title'],
+                                  style: TextStyle(fontSize: 17.sp, height: 2),
+                                  textAlign: TextAlign.justify,
+                                ),
+                              );
+                            }),
+                      ],
                     ),
-            ),
+                  ),
+                ),
+              ),
       ),
     );
   }

@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '80843729525',
     projectId: 'nlcshub',
     storageBucket: 'nlcshub.appspot.com',
-    iosClientId: '80843729525-c1i0ap14o59394diiv3a7f22rb5km879.apps.googleusercontent.com',
+    iosClientId:
+        '80843729525-c1i0ap14o59394diiv3a7f22rb5km879.apps.googleusercontent.com',
     iosBundleId: 'com.nlcsjeju.nlcshubmobile',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '80843729525',
     projectId: 'nlcshub',
     storageBucket: 'nlcshub.appspot.com',
-    iosClientId: '80843729525-c1i0ap14o59394diiv3a7f22rb5km879.apps.googleusercontent.com',
+    iosClientId:
+        '80843729525-c1i0ap14o59394diiv3a7f22rb5km879.apps.googleusercontent.com',
     iosBundleId: 'com.nlcsjeju.nlcshubmobile',
   );
 }

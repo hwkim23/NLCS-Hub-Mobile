@@ -12,10 +12,13 @@ int select = 0;
 
 //Expansion tile
 class ItemTile extends StatefulWidget {
-  const ItemTile({super.key, required this.division, required this.competitions, required this.index, required this.expanded});
+  const ItemTile(
+      {super.key,
+      required this.division,
+      required this.index,
+      required this.expanded});
 
   final String division;
-  final List<String> competitions;
   final int index;
   final List<bool> expanded;
 
@@ -24,7 +27,6 @@ class ItemTile extends StatefulWidget {
 }
 
 class _ItemTileState extends State<ItemTile> {
-
   List<String> logoUrl = [];
   List<String> date = [];
   List<String> opp = [];
@@ -43,270 +45,144 @@ class _ItemTileState extends State<ItemTile> {
     List<List<dynamic>> tempScore = [];
     List<String> tempTour = [];
 
-    for (int i=0; i<context.read<Store1>().date.length; i++) {
-      if (separate[2] == "Volleyball") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+    if (context.read<Store3>().loaded == true) {
+      for (int i = 0; i < context.read<Store3>().date.length; i++) {
+        if (separate[2] == "Volleyball") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Football") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
           }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+        } else if (separate[2] == "Football") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Basketball") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
           }
-        }
-      } else if (separate[2] == "Rugby") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+        } else if (separate[2] == "Basketball") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Tennis") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Badminton") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Table Tennis") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
           }
         }
@@ -320,11 +196,6 @@ class _ItemTileState extends State<ItemTile> {
       score = tempScore;
       tour = tempTour;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -344,7 +215,9 @@ class _ItemTileState extends State<ItemTile> {
           margin: EdgeInsets.only(top: 1.h),
           duration: const Duration(milliseconds: 200),
           height: widget.expanded[widget.index]
-              ? date.isNotEmpty ? date.length==1 ? 25.65.h : 25.65.h+(19.h*(date.length-1)) : 9.h
+              ? date.isNotEmpty
+                  ? 25.65.h + (19.h * (date.length - 1))
+                  : 9.h
               : 9.h,
           child: Card(
             color: const Color.fromRGBO(241, 242, 246, 1.0),
@@ -372,11 +245,13 @@ class _ItemTileState extends State<ItemTile> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   height: widget.expanded[widget.index]
-                      ? date.isNotEmpty ? date.length==1 ? 19.h : 19.h+(19.h*(date.length-1)) : 0
+                      ? date.isNotEmpty
+                          ? 9.h + (19.h * (date.length - 1))
+                          : 0
                       : 0,
                   width: 100.w,
                   child: widget.expanded[widget.index]
-                      ? ItemExpandedTile(competitions: widget.competitions, division: widget.division)
+                      ? ItemExpandedTile(division: widget.division)
                       : const SizedBox(height: 0.00),
                 ),
               ],
@@ -390,9 +265,8 @@ class _ItemTileState extends State<ItemTile> {
 
 //Widget which is shown after expanding
 class ItemExpandedTile extends StatefulWidget {
-  const ItemExpandedTile({super.key, required this.competitions, required this.division});
+  const ItemExpandedTile({super.key, required this.division});
 
-  final List<String> competitions;
   final String division;
 
   @override
@@ -432,274 +306,242 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
     List<List<dynamic>> tempScore = [];
     List<String> tempTour = [];
 
-    for (int i=0; i<context.read<Store1>().date.length; i++) {
-      if (separate[2] == "Volleyball") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+    if (context.read<Store3>().loaded == true) {
+      for (int i = 0; i < context.read<Store3>().date.length; i++) {
+        if (separate[2] == "Volleyball") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "volleyball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Football") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
           }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+        } else if (separate[2] == "Football") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "football") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        }
-      } else if (separate[2] == "Basketball") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "basketball") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
           }
-        }
-      } /*else if (separate[2] == "Rugby") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+        } else if (separate[2] == "Basketball") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "rugby") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                tempDate.add(context.read<Store3>().date[i]);
+                tempOpp.add(context.read<Store3>().opp[i]);
+                tempScore.add(context.read<Store3>().score[i]);
+                tempTour.add(context.read<Store3>().tournament[i]);
+              }
             }
           }
         }
-      } else if (separate[2] == "Tennis") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+      }
+    } else {
+      for (int i = 0; i < context.read<Store3>().date.length; i++) {
+        if (separate[2] == "Volleyball") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "volleyball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
             }
           }
-        }
-      } else if (separate[2] == "Badminton") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+        } else if (separate[2] == "Football") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "badminton") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "football") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
             }
           }
-        }
-      } else if (separate[2] == "Table Tennis") {
-        if (separate[0] == "Boys") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+        } else if (separate[2] == "Basketball") {
+          if (separate[0] == "Boys") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == true &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
             }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == true && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          }
-        } else if (separate[0] == "Girls") {
-          if (separate[separate.length - 1] == "A") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == true && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
-            }
-          } else if (separate[separate.length - 1] == "B") {
-            if (context.read<Store1>().isBoy[i] == false && context.read<Store1>().isA[i] == false && context.read<Store1>().sport[i] == "table tennis") {
-              tempLogoUrl.add(context.read<Store1>().logoUrl[i]);
-              tempDate.add(context.read<Store1>().date[i]);
-              tempOpp.add(context.read<Store1>().opp[i]);
-              tempScore.add(context.read<Store1>().score[i]);
-              tempTour.add(context.read<Store1>().tournament[i]);
+          } else if (separate[0] == "Girls") {
+            if (separate[separate.length - 1] == "A") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == true &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
+            } else if (separate[separate.length - 1] == "B") {
+              if (context.read<Store3>().isBoy[i] == false &&
+                  context.read<Store3>().isA[i] == false &&
+                  context.read<Store3>().sport[i] == "basketball") {
+                tempDate.add(context.read<Store3>().date[i]);
+              }
             }
           }
         }
-      }*/
+      }
     }
 
     setState(() {
@@ -722,104 +564,105 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /*Padding(
-          padding: EdgeInsets.only(top: 1.h),
-          child: ChipsChoice<int>.single(
-            choiceStyle: C2ChipStyle.toned(
-              selectedStyle: const C2ChipStyle(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25),
-                  ),
-                  backgroundColor: Color(0xff008AFF)
-              ),
-            ),
-            value: tag,
-            onChanged: (val) => setState(() => tag = val),
-            choiceItems: C2Choice.listFrom<int, String>(
-              source: widget.competitions,
-              value: (i, v) => i,
-              label: (i, v) => v,
-            ),
-          ),
-        ),*/
-        /*LayoutBuilder(
-          builder: (context, constraints) {
-            int i = 0;
-            while (i < widget.competitions.length) {
-              if (tag == 0) {
-                return ListView.builder(
-                    physics: const ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: date.length,
-                    //scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: EdgeInsets.only(top: 2.5.h),
-                        padding: EdgeInsets.symmetric(horizontal: 5.w),
-                        height: 150,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [
-                                nlcs,
-                                opp[index]=="sja" ? sja : opp[index]=="kisj" ? kisj : opp[index]=="bha" ? bha : opp[index]=="kis" ? kis : opp[index]=="bis" ? bis : opp[index]=="gsis" ? gsis : sis
-                              ],
-                            )
-                        ),
-                        child: Row(
+        ListView.builder(
+            physics: const ClampingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: date.isNotEmpty ? date.length : 1,
+            itemBuilder: (BuildContext context, int index) {
+              print(date.length);
+              return Container(
+                  margin: EdgeInsets.only(top: 2.5.h),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  height: 16.5.h,
+                  decoration: context.read<Store3>().loaded == false
+                      ? BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.black.withOpacity(0.04))
+                      : BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              nlcs,
+                              opp[index] == "fps"
+                                  ? fps
+                                  : opp[index] == "nlcs"
+                                      ? nlcs
+                                      : opp[index] == "isb"
+                                          ? isb
+                                          : opp[index] == "bfs"
+                                              ? bfs
+                                              : opp[index] == "sja"
+                                                  ? sja
+                                                  : opp[index] == "kisj"
+                                                      ? kisj
+                                                      : opp[index] == "bha"
+                                                          ? bha
+                                                          : opp[index] == "kis"
+                                                              ? kis
+                                                              : opp[index] ==
+                                                                      "bis"
+                                                                  ? bis
+                                                                  : opp[index] ==
+                                                                          "gsis"
+                                                                      ? gsis
+                                                                      : sis
+                            ],
+                          )),
+                  child: context.read<Store3>().loaded == true
+                      ? Row(
                           children: [
                             Flexible(
                               flex: 2,
                               child: Container(
                                 padding: EdgeInsets.only(right: 5.w),
                                 child: CachedNetworkImage(
-                                  imageUrl: context.read<Store1>().nlcsUrl,
+                                  imageUrl: context.read<Store3>().nlcsUrl,
                                 ),
                               ),
                             ),
                             Flexible(
                                 flex: 3,
                                 child: Container(
-                                  margin: EdgeInsets.symmetric(vertical: 4.h),
+                                  margin: EdgeInsets.symmetric(vertical: 3.h),
                                   decoration: BoxDecoration(
                                       color: const Color(0x40ffffff),
-                                      borderRadius: BorderRadius.circular(20)
-                                  ),
+                                      borderRadius: BorderRadius.circular(20)),
                                   child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Flexible(
                                         flex: 1,
-                                        child: Container(
-                                            margin: EdgeInsets.only(top: 0.8.h),
+                                        child: SizedBox(
                                             width: double.infinity,
                                             child: Text(
-                                              date[index],
+                                              tour[index],
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 15.sp
-                                              ),
-                                            )
-                                        ),
+                                                  fontSize: 13.sp),
+                                            )),
                                       ),
                                       Flexible(
                                         flex: 2,
                                         child: Container(
-                                          margin: EdgeInsets.symmetric(vertical: 0.8.h),
+                                          margin: EdgeInsets.symmetric(
+                                              vertical: 0.8.h),
                                           width: double.infinity,
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5.w),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: <Widget> [
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: <Widget>[
                                                 Text(
                                                   "${score[index][0]}",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 22.sp
-                                                  ),
+                                                      fontSize: 20.sp),
                                                 ),
                                                 const VerticalDivider(
                                                   color: Color(0x80ffffff),
@@ -830,18 +673,29 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                                   "${score[index][1]}",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 22.sp
-                                                  ),
+                                                      fontSize: 20.sp),
                                                 )
                                               ],
                                             ),
                                           ),
                                         ),
-                                      )
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: SizedBox(
+                                            //margin: EdgeInsets.only(top: 0.8.h),
+                                            width: double.infinity,
+                                            child: Text(
+                                              date[index],
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 13.sp),
+                                            )),
+                                      ),
                                     ],
                                   ),
-                                )
-                            ),
+                                )),
                             Flexible(
                               flex: 2,
                               child: Center(
@@ -855,142 +709,9 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                               ),
                             )
                           ],
-                        ),
-                      );
-                    }
-                );
-              } else {
-                i++;
-              }
-            }
-            return Container();
-          },
-        )*/
-        ListView.builder(
-            physics: const ClampingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: date.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: EdgeInsets.only(top: 2.5.h),
-                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                height: 16.5.h,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        nlcs,
-                        opp[index]=="fps" ? fps : opp[index]=="nlcs" ? nlcs : opp[index]=="isb" ? isb : opp[index]=="bfs" ? bfs : opp[index]=="sja" ? sja : opp[index]=="kisj" ? kisj : opp[index]=="bha" ? bha : opp[index]=="kis" ? kis : opp[index]=="bis" ? bis : opp[index]=="gsis" ? gsis : sis
-                      ],
-                    )
-                ),
-                child: Row(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Container(
-                        padding: EdgeInsets.only(right: 5.w),
-                        child: CachedNetworkImage(
-                          imageUrl: context.read<Store1>().nlcsUrl,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                        flex: 3,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 3.h),
-                          decoration: BoxDecoration(
-                              color: const Color(0x40ffffff),
-                              borderRadius: BorderRadius.circular(20)
-                          ),
-                          child: Column(
-                            children: [
-                              Flexible(
-                                flex: 1,
-                                child: Container(
-                                  margin: EdgeInsets.only(top: 0.8.h),
-                                    width: double.infinity,
-                                    child: Text(
-                                      tour[index],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14.sp
-                                      ),
-                                    )
-                                ),
-                              ),
-                              Flexible(
-                                flex: 2,
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(vertical: 0.8.h),
-                                  width: double.infinity,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: <Widget> [
-                                        Text(
-                                          "${score[index][0]}",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20.sp
-                                          ),
-                                        ),
-                                        const VerticalDivider(
-                                          color: Color(0x80ffffff),
-                                          thickness: 1.3,
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          "${score[index][1]}",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20.sp
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),Flexible(
-                                flex: 1,
-                                child: SizedBox(
-                                    //margin: EdgeInsets.only(top: 0.8.h),
-                                    width: double.infinity,
-                                    child: Text(
-                                      date[index],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14.sp
-                                      ),
-                                    )
-                                ),
-                              ),
-                            ],
-                          ),
                         )
-                    ),
-                    Flexible(
-                      flex: 2,
-                      child: Center(
-                        child: Container(
-                          height: 7.h,
-                          padding: EdgeInsets.only(left: 5.w),
-                          child: CachedNetworkImage(
-                            imageUrl: logoUrl[index],
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            }
-        )
+                      : Container());
+            })
       ],
     );
   }
@@ -1011,26 +732,24 @@ class _SportsCallState extends State<SportsCall> {
       _selectedIndex = index;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false, 
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
-      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      appBar: BaseAppBar(
+          appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
       body: SafeArea(
-        child: LayoutBuilder(
-            builder: (context, constraints) {
-              if (_selectedIndex == 0) {
-                return const Sports();
-              } else if (_selectedIndex == 1) {
-                return const HomePage();
-              }
-              else {
-                return const Bulletin();
-              }
-            }
-        ),
+        child: LayoutBuilder(builder: (context, constraints) {
+          if (_selectedIndex == 0) {
+            return const Sports();
+          } else if (_selectedIndex == 1) {
+            return const HomePage();
+          } else {
+            return const Bulletin();
+          }
+        }),
       ),
       drawer: const BaseDrawer(drawer: Drawer()),
       bottomNavigationBar: BottomNavigationBar(
@@ -1068,30 +787,7 @@ class Sports extends StatefulWidget {
 class _SportsState extends State<Sports> {
   int _selectedIndex = -1;
 
-  // TODO: Refresh 됐을때 코드 짜기2
-  Future refresh() async {
-
-  }
-
-  static const subCategoryFootball = <String>['All', 'Friendly', 'PSG Academy Tournament'];
-  static const subCategoryVolleyball = <String>['All', 'Friendly', 'KISAC', 'JIT', 'Jeju Sports Festival'];
-  static const subCategoryBasketball = <String>['All', 'Friendly'];
-  //static const subCategoryRugby = <String>['All', 'Jeju Sports Festival'];
-  //static const subCategoryTennis = <String>['All', 'Friendly', 'KISAC'];
-  //static const subCategoryBadminton = <String>['All', 'Friendly', 'KISAC'];
-  //static const subCategoryTabletennis = <String>['All', 'Friendly', 'KISAC'];
-
-  //List<String> label = ["Volleyball", "Football", "Basketball", "Rugby", "Tennis", "Badminton", "Table Tennis"];
   List<String> label = ["Football", "Basketball", "Volleyball"];
-  /*List<IconData> listOfChipNames = [
-    Icons.sports_volleyball,
-    Icons.sports_soccer,
-    Icons.sports_basketball,
-    Icons.sports_rugby,
-    Icons.sports_baseball,
-    Icons.sports_mma,
-    Icons.sports_tennis
-  ];*/
   List<IconData> listOfChipNames = [
     Icons.sports_soccer,
     Icons.sports_basketball,
@@ -1113,7 +809,9 @@ class _SportsState extends State<Sports> {
   double spacing = 0.0;
   VerticalDirection verticalDirection = VerticalDirection.down;
   List<double> borderRadiiList = const [15];
-  List<Color> inactiveBorderColorList = const [Color.fromRGBO(241, 242, 246, 1.0)];
+  List<Color> inactiveBorderColorList = const [
+    Color.fromRGBO(241, 242, 246, 1.0)
+  ];
   List<Color> activeBorderColorList = const [Color(0xff1e73be)];
   double widgetSpacing = 4;
   EdgeInsets padding = EdgeInsets.zero;
@@ -1136,12 +834,12 @@ class _SportsState extends State<Sports> {
 
   Color _textColorizer(int index) {
     if (index == listOfChipIndicesCurrentlySeclected.first) {
-        if (activeTextColorList.length == 1) {
-          return activeTextColorList.first;
-        } else {
-          return activeTextColorList[index];
-        }
+      if (activeTextColorList.length == 1) {
+        return activeTextColorList.first;
       } else {
+        return activeTextColorList[index];
+      }
+    } else {
       if (inactiveTextColorList.length == 1) {
         return inactiveTextColorList.first;
       } else {
@@ -1152,18 +850,18 @@ class _SportsState extends State<Sports> {
 
   Color _tileColorizer(int index) {
     if (index == listOfChipIndicesCurrentlySeclected.first) {
-        if (activeBgColorList.length == 1) {
-          return activeBgColorList.first;
-        } else {
-          return activeBgColorList[index];
-        }
+      if (activeBgColorList.length == 1) {
+        return activeBgColorList.first;
       } else {
-        if (inactiveBgColorList.length == 1) {
-          return inactiveBgColorList.first;
-        } else {
-          return inactiveBgColorList[index];
-        }
+        return activeBgColorList[index];
       }
+    } else {
+      if (inactiveBgColorList.length == 1) {
+        return inactiveBgColorList.first;
+      } else {
+        return inactiveBgColorList[index];
+      }
+    }
   }
 
   @override
@@ -1174,222 +872,136 @@ class _SportsState extends State<Sports> {
 
   @override
   Widget build(BuildContext context) {
-    return /*Scaffold(
-      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
-      drawer: BaseDrawer(drawer: const Drawer(), title: widget.title, path: widget.path, nextH: widget.nextH, jeoji: widget.jeoji, geomun: widget.geomun, sarah: widget.sarah, mulchat: widget.mulchat, noro: widget.noro),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.sports),
-            label: 'Sports',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Bulletin',
-          ),
-        ],
-        currentIndex: (_selectedIndex != -1) ? _selectedIndex : 0,
-        selectedFontSize: (_selectedIndex != -1) ? 14 : 12,
-        selectedItemColor: (_selectedIndex != -1) ? const Color(0xff1e73be) : Colors.black54,
-        onTap: _onItemTapped,
-      ),
-      body: 
-    );*/
-    SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            if (_selectedIndex == -1) {
-              return RefreshIndicator(
-                onRefresh: refresh,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Center(
-                          child: SingleChildScrollView(
-                              scrollDirection: axis,
-                              physics: scrollPhysics ?? const ScrollPhysics(),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(
-                                  listOfChipNames.length,
-                                      (index) => Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: widgetSpacing,
+    return SafeArea(child: LayoutBuilder(builder: (context, constraints) {
+      if (_selectedIndex == -1) {
+        return Padding(
+          padding: EdgeInsets.only(left: 5.w, right: 5.w),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Center(
+                    child: SingleChildScrollView(
+                        scrollDirection: axis,
+                        physics: scrollPhysics ?? const ScrollPhysics(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            listOfChipNames.length,
+                            (index) => Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: widgetSpacing,
+                              ),
+                              child: Column(
+                                children: [
+                                  ChoiceChip(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 7),
+                                    label: Icon(listOfChipNames[index],
+                                        color: _textColorizer(index)),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          borderRadiiList.length == 1
+                                              ? borderRadiiList.first
+                                              : borderRadiiList[index]),
                                     ),
-                                    child: Column(
-                                      children: [
-                                        ChoiceChip(
-                                          padding: const EdgeInsets.symmetric(vertical: 7),
-                                          label: Icon(
-                                              listOfChipNames[index],
-                                              color: _textColorizer(index)
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                borderRadiiList.length == 1
-                                                    ? borderRadiiList.first
-                                                    : borderRadiiList[index]),
-                                          ),
-                                          backgroundColor:
-                                          inactiveBgColorList.length == 1
-                                              ? inactiveBgColorList.first
-                                              : inactiveBgColorList[index],
-                                          selected: _checkChipSelectionStatus(index),
-                                          selectedColor: _tileColorizer(index),
-                                          onSelected: (val) {
-                                            _handleOnSelected(index);
-                                            // update UI
-                                            setState(() {select = index;});
-                                          },
-                                        ),
-                                        Text(label[index])
-                                      ],
-                                    ),
+                                    backgroundColor:
+                                        inactiveBgColorList.length == 1
+                                            ? inactiveBgColorList.first
+                                            : inactiveBgColorList[index],
+                                    selected: _checkChipSelectionStatus(index),
+                                    selectedColor: _tileColorizer(index),
+                                    onSelected: (val) {
+                                      _handleOnSelected(index);
+                                      // update UI
+                                      setState(() {
+                                        select = index;
+                                      });
+                                    },
                                   ),
-                                ),
-                              )
-                          )
-                        ),
-                        LayoutBuilder(
-                          builder: (context, constraints) {
-                            if (select == 0) {
-                              //List<bool> expanded = [false, false, false, false, false, false, false];
-                              List<bool> expanded = [false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 3,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Football A',
-                                    'Girls HS Football A',
-                                    'Girls HS Football B',
-                                  ];
-                                  return ItemTile(competitions: subCategoryFootball, division: divisions[index], index: 1, expanded: expanded);
-                                },
-                              );
-                            } else if (select == 1) {
-                              //List<bool> expanded = [false, false, false, false, false, false, false];
-                              List<bool> expanded = [false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 4,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Basketball A',
-                                    'Boys HS Basketball B',
-                                    'Girls HS Basketball A',
-                                    'Girls HS Basketball B',
-                                  ];
-                                  return ItemTile(competitions: subCategoryBasketball, division: divisions[index], index: 2, expanded: expanded);
-                                },
-                              );
-                            } //else if (select == 2) {
-                              else {
-                              //List<bool> expanded = [false, false, false, false, false, false, false];
-                              List<bool> expanded = [false, false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 4,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Volleyball A',
-                                    'Boys HS Volleyball B',
-                                    'Girls HS Volleyball A',
-                                    'Girls HS Volleyball B',
-                                  ];
-                                  return ItemTile(competitions: subCategoryVolleyball, division: divisions[index], index: 0, expanded: expanded);
-                                },
-                              );
-                            } /*else if (select == 3) {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 1,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = ['Boys HS Rugby'];
-                                  return ItemTile(competitions: subCategoryRugby, division: divisions[index], index: 3, expanded: expanded);
-                                },
-                              );
-                            } else if (select == 4) {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 5,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Tennis Single',
-                                    'Boys HS Tennis Double',
-                                    'Girls HS Tennis Single',
-                                    'Girls HS Tennis Double',
-                                    'Mix HS Tennis Double',
-                                  ];
-                                  return ItemTile(competitions: subCategoryTennis, division: divisions[index], index: 4, expanded: expanded);
-                                },
-                              );
-                            } else if (select == 5) {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 5,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Badminton Single',
-                                    'Boys HS Badminton Double',
-                                    'Girls HS Badminton Single',
-                                    'Girls HS Badminton Double',
-                                    'Mix HS Badminton Double',
-                                  ];
-                                  return ItemTile(competitions: subCategoryBadminton, division: divisions[index], index: 5, expanded: expanded);
-                                },
-                              );
-                            } else {
-                              List<bool> expanded = [false, false, false, false, false, false, false];
-                              return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 5,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List<String> divisions = [
-                                    'Boys HS Table Tennis Single',
-                                    'Boys HS Table Tennis Double',
-                                    'Girls HS Table Tennis Single',
-                                    'Girls HS Table Tennis Double',
-                                    'Mix HS Table Tennis Double',
-                                  ];
-                                  return ItemTile(competitions: subCategoryTabletennis, division: divisions[index], index: 6, expanded: expanded);
-                                },
-                              );
-                            }*/
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            } else if (_selectedIndex == 0) {
-              return const Sports();
-            } else if (_selectedIndex == 1) {
-              return const HomePage();
-            } else {
-              return const Bulletin();
-            }
-          }
-        )
-      );
+                                  Text(label[index])
+                                ],
+                              ),
+                            ),
+                          ),
+                        ))),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (select == 0) {
+                      //List<bool> expanded = [false, false, false, false, false, false, false];
+                      List<bool> expanded = [false, false, false];
+                      return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          List<String> divisions = [
+                            'Boys HS Football A',
+                            'Girls HS Football A',
+                            'Girls HS Football B',
+                          ];
+                          return ItemTile(
+                              division: divisions[index],
+                              index: 1,
+                              expanded: expanded);
+                        },
+                      );
+                    } else if (select == 1) {
+                      //List<bool> expanded = [false, false, false, false, false, false, false];
+                      List<bool> expanded = [false, false, false];
+                      return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 4,
+                        itemBuilder: (BuildContext context, int index) {
+                          List<String> divisions = [
+                            'Boys HS Basketball A',
+                            'Boys HS Basketball B',
+                            'Girls HS Basketball A',
+                            'Girls HS Basketball B',
+                          ];
+                          return ItemTile(
+                              division: divisions[index],
+                              index: 2,
+                              expanded: expanded);
+                        },
+                      );
+                    } //else if (select == 2) {
+                    else {
+                      //List<bool> expanded = [false, false, false, false, false, false, false];
+                      List<bool> expanded = [false, false, false, false];
+                      return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 4,
+                        itemBuilder: (BuildContext context, int index) {
+                          List<String> divisions = [
+                            'Boys HS Volleyball A',
+                            'Boys HS Volleyball B',
+                            'Girls HS Volleyball A',
+                            'Girls HS Volleyball B',
+                          ];
+                          return ItemTile(
+                              division: divisions[index],
+                              index: 0,
+                              expanded: expanded);
+                        },
+                      );
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
+        );
+      } else if (_selectedIndex == 0) {
+        return const Sports();
+      } else if (_selectedIndex == 1) {
+        return const HomePage();
+      } else {
+        return const Bulletin();
+      }
+    }));
   }
 }
 
@@ -1400,12 +1012,12 @@ class Filter {
   const Filter({required this.label, required this.icon});
 }
 
-
 class ChipsFilter extends StatefulWidget {
   final List<Filter> filters;
   final int selected;
 
-  const ChipsFilter({Key? key, required this.filters, required this.selected}) : super(key: key);
+  const ChipsFilter({Key? key, required this.filters, required this.selected})
+      : super(key: key);
 
   @override
   _ChipsFilterState createState() => _ChipsFilterState();
@@ -1416,8 +1028,7 @@ class _ChipsFilterState extends State<ChipsFilter> {
 
   @override
   void initState() {
-    if (widget.selected >= 0 &&
-        widget.selected < widget.filters.length) {
+    if (widget.selected >= 0 && widget.selected < widget.filters.length) {
       selectedIndex = widget.selected;
     }
 
@@ -1454,18 +1065,23 @@ class _ChipsFilterState extends State<ChipsFilter> {
               height: 35,
               padding: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
-                color: isActive ? const Color(0xff1e73be) : const Color.fromRGBO(241, 242, 246, 1.0),
-                border: Border.all(color: const Color.fromRGBO(241, 242, 246, 1.0)),
+                color: isActive
+                    ? const Color(0xff1e73be)
+                    : const Color.fromRGBO(241, 242, 246, 1.0),
+                border:
+                    Border.all(color: const Color.fromRGBO(241, 242, 246, 1.0)),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: isActive
-                  ? Icon(filter.icon, color: Colors.white,)
+                  ? Icon(
+                      filter.icon,
+                      color: Colors.white,
+                    )
                   : Icon(filter.icon),
             ),
             Container(
                 margin: const EdgeInsets.only(top: 5),
-                child: Text(filter.label, style: TextStyle(fontSize: 14.sp))
-            )
+                child: Text(filter.label, style: TextStyle(fontSize: 14.sp)))
           ],
         ),
       ),

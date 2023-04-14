@@ -27,25 +27,23 @@ class _BulletinCallState extends State<BulletinCall> {
       _selectedIndex = index;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(241, 242, 246, 1.0),
-      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      appBar: BaseAppBar(
+          appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
       body: SafeArea(
-        child: LayoutBuilder(
-            builder: (context, constraints) {
-              if (_selectedIndex == 0) {
-                return const Sports();
-              } else if (_selectedIndex == 1) {
-                return const HomePage();
-              }
-              else {
-                return const Bulletin();
-              }
-            }
-        ),
+        child: LayoutBuilder(builder: (context, constraints) {
+          if (_selectedIndex == 0) {
+            return const Sports();
+          } else if (_selectedIndex == 1) {
+            return const HomePage();
+          } else {
+            return const Bulletin();
+          }
+        }),
       ),
       drawer: const BaseDrawer(drawer: Drawer()),
       bottomNavigationBar: BottomNavigationBar(
@@ -80,15 +78,15 @@ class Bulletin extends StatefulWidget {
 
 class _BulletinState extends State<Bulletin> {
   void openPDF(BuildContext context, File file) => Navigator.of(context).push(
-    MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
-  );
+        MaterialPageRoute(builder: (context) => PDFMenu(file: file)),
+      );
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(top: 3.h, bottom: 3.h, left: 5.w, right: 5.w),
-          child: ListView.builder(
+      child: Padding(
+        padding: EdgeInsets.only(top: 3.h, bottom: 3.h, left: 5.w, right: 5.w),
+        child: ListView.builder(
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
             itemCount: context.watch<Store1>().title.length,
@@ -101,8 +99,10 @@ class _BulletinState extends State<Bulletin> {
                 width: 100.w,
                 child: GestureDetector(
                   onTap: () async {
-                    Fluttertoast.showToast(msg: "Loading, please wait.", fontSize: 18.0);
-                    final file = await PDFApi.loadFirebase(context.read<Store1>().path[index]);
+                    Fluttertoast.showToast(
+                        msg: "Loading, please wait.", fontSize: 18.0);
+                    final file = await PDFApi.loadFirebase(
+                        context.read<Store1>().path[index]);
                     if (file == null) return;
                     openPDF(context, file);
                   },
@@ -111,7 +111,8 @@ class _BulletinState extends State<Bulletin> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Container(
-                      padding: EdgeInsets.only(top: 2.7.h, left: 5.w, right: 5.w),
+                      padding:
+                          EdgeInsets.only(top: 2.7.h, left: 5.w, right: 5.w),
                       child: Text(
                         context.read<Store1>().title[index],
                         textAlign: TextAlign.start,
@@ -121,9 +122,8 @@ class _BulletinState extends State<Bulletin> {
                   ),
                 ),
               );
-            }
-          ),
-        ),
-      );
+            }),
+      ),
+    );
   }
 }

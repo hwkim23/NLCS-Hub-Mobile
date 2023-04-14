@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'search.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar({Key? key,
-    required this.appBar,
-    required this.color
-  })
+  const BaseAppBar({Key? key, required this.appBar, required this.color})
       : super(key: key);
 
   final AppBar appBar;
@@ -19,11 +16,11 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: color,
       actions: [
         IconButton(
-          icon: const Icon(Icons.search, color: Colors.black),
-          onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SearchPage()));
-          }
-        )
+            icon: const Icon(Icons.search, color: Colors.black),
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const SearchPage()));
+            })
       ],
     );
   }

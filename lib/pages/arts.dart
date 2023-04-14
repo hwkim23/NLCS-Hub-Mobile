@@ -35,40 +35,43 @@ class _ArtsState extends State<Arts> {
 
   void fetchData() async {
     // Loads web page and downloads into local state of library
-    if (await webScraper
-        .loadWebPage('/category/arts/')) {
+    if (await webScraper.loadWebPage('/category/arts/')) {
       setState(() {
-        title = webScraper.getElement(
-            'h2.entry-title > a', ['href', 'rel']);
-        date = webScraper.getElement(
-            'ul.post-meta > li.meta-date', ['class']);
-        read = webScraper.getElement(
-            'ul.post-meta > li.meta-reading-time', ['class']);
-        image = webScraper.getElement(
-            'div.cs-overlay-background > img', ["data-orig-file"]);
-        url = webScraper.getElement(
-            'div.cs-overlay-hover > a', ['href']);
+        title = webScraper.getElement('h2.entry-title > a', ['href', 'rel']);
+        date = webScraper.getElement('ul.post-meta > li.meta-date', ['class']);
+        read = webScraper
+            .getElement('ul.post-meta > li.meta-reading-time', ['class']);
+        image = webScraper
+            .getElement('div.cs-overlay-background > img', ["data-orig-file"]);
+        url = webScraper.getElement('div.cs-overlay-hover > a', ['href']);
         category = webScraper.getElement(
             'div.meta-category > a.category-style > span.label', ['class']);
-        subsubCategory = webScraper.getElement(
-            'article', ['class']);
+        subsubCategory = webScraper.getElement('article', ['class']);
       });
     }
   }
 
   Future<List<Map<String, dynamic>>> fetchParagraph(String url) async {
     late List<Map<String, dynamic>> paragraph;
-    if (await webScraper
-        .loadWebPage(url)) {
-      paragraph = webScraper.getElement(
-          'div.entry-content > p', ["style"]);
+    if (await webScraper.loadWebPage(url)) {
+      paragraph = webScraper.getElement('div.entry-content > p', ["style"]);
     }
     return paragraph;
   }
 
   void put(url, title, category, imageURL, date) async {
     final fetchedParagraph = await fetchParagraph(url);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Article(url: url, title: title, category: category, imageURL: imageURL, date: date, paragraph: fetchedParagraph,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Article(
+                  url: url,
+                  title: title,
+                  category: category,
+                  imageURL: imageURL,
+                  date: date,
+                  paragraph: fetchedParagraph,
+                )));
   }
 
   int _selectedIndex = -1;
@@ -90,7 +93,13 @@ class _ArtsState extends State<Arts> {
   }
 
   int tag = 0;
-  static const subCategory = <String>["All", "Art and Design", "Music", "Dance", "Drama"];
+  static const subCategory = <String>[
+    "All",
+    "Art and Design",
+    "Music",
+    "Dance",
+    "Drama"
+  ];
 
   List subString = [];
 
@@ -113,7 +122,7 @@ class _ArtsState extends State<Arts> {
     filteredImage = [];
     filteredUrl = [];
     Map<String, dynamic> attributes;
-    for (int i=0; i< title!.length; i++) {
+    for (int i = 0; i < title!.length; i++) {
       attributes = subsubCategory[i]['attributes'];
       if (attributes['class'].contains(subCategory)) {
         filteredTitle.add(title![i]);
@@ -129,7 +138,8 @@ class _ArtsState extends State<Arts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
+      appBar: BaseAppBar(
+          appBar: AppBar(), color: const Color.fromRGBO(241, 242, 246, 1.0)),
       drawer: const BaseDrawer(drawer: Drawer()),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -148,47 +158,45 @@ class _ArtsState extends State<Arts> {
         ],
         currentIndex: (_selectedIndex != -1) ? _selectedIndex : 0,
         selectedFontSize: (_selectedIndex != -1) ? 14 : 12,
-        selectedItemColor: (_selectedIndex != -1) ? const Color(0xff1e73be) : Colors.black54,
+        selectedItemColor:
+            (_selectedIndex != -1) ? const Color(0xff1e73be) : Colors.black54,
         onTap: _onItemTapped,
       ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            if (_selectedIndex == -1) {
-              return title == null || title!.isEmpty
+      body: SafeArea(child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (_selectedIndex == -1) {
+            return title == null || title!.isEmpty
                 ? Center(child: Lottie.asset('assets/lottie.json'))
                 : RefreshIndicator(
-                color: const Color(0xff1e73be),
-                onRefresh: refresh,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Arts',
-                          style: TextStyle(fontSize: 20.sp),
-                        ),
-                        ChipsChoice<int>.single(
-                          choiceStyle: C2ChipStyle.toned(
-                            selectedStyle: const C2ChipStyle(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                                backgroundColor: Color(0xff1e73be)
+                    color: const Color(0xff1e73be),
+                    onRefresh: refresh,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Arts',
+                              style: TextStyle(fontSize: 20.sp),
                             ),
-                          ),
-                          value: tag,
-                          onChanged: (val) => setState(() => tag = val),
-                          choiceItems: C2Choice.listFrom<int, String>(
-                            source: subCategory,
-                            value: (i, v) => i,
-                            label: (i, v) => v,
-                          ),
-                        ),
-                        LayoutBuilder(
-                            builder: (context, constraints) {
+                            ChipsChoice<int>.single(
+                              choiceStyle: C2ChipStyle.toned(
+                                selectedStyle: const C2ChipStyle(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(25),
+                                    ),
+                                    backgroundColor: Color(0xff1e73be)),
+                              ),
+                              value: tag,
+                              onChanged: (val) => setState(() => tag = val),
+                              choiceItems: C2Choice.listFrom<int, String>(
+                                source: subCategory,
+                                value: (i, v) => i,
+                                label: (i, v) => v,
+                              ),
+                            ),
+                            LayoutBuilder(builder: (context, constraints) {
                               if (tag == 0) {
                                 return Container(
                                   margin: EdgeInsets.only(bottom: 3.h),
@@ -196,25 +204,36 @@ class _ArtsState extends State<Arts> {
                                       physics: const ClampingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: title!.length,
-                                      itemBuilder: (BuildContext context, int index) {
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
                                         Map<String, dynamic> attributes2 =
-                                        url[index]['attributes'];
+                                            url[index]['attributes'];
                                         Map<String, dynamic> attributes =
-                                        image[index]['attributes'];
+                                            image[index]['attributes'];
                                         return Padding(
                                           padding: EdgeInsets.only(
                                               right: 1.1.h, top: 1.h),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             child: GestureDetector(
-                                              onTap: (){
-                                                put(convert(attributes2["href"]), title![index]['title'], category[index]['title'], attributes["data-orig-file"], date[index]['title']);
+                                              onTap: () {
+                                                put(
+                                                    convert(
+                                                        attributes2["href"]),
+                                                    title![index]['title'],
+                                                    category[index]['title'],
+                                                    attributes[
+                                                        "data-orig-file"],
+                                                    date[index]['title']);
                                               },
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(20)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
                                                 child: Container(
                                                   width: 130,
                                                   padding: EdgeInsets.all(1.h),
@@ -224,47 +243,77 @@ class _ArtsState extends State<Arts> {
                                                         height: 11.h,
                                                         width: 11.h,
                                                         child: ClipRRect(
-                                                          borderRadius: BorderRadius.circular(15),
-                                                          child: CachedNetworkImage(
-                                                            imageUrl: attributes["data-orig-file"],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: attributes[
+                                                                "data-orig-file"],
                                                             fit: BoxFit.cover,
-                                                            placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                Container(
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.04)),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                       ),
                                                       Flexible(
                                                         fit: FlexFit.loose,
                                                         child: Container(
-                                                          margin: const EdgeInsets.only(left: 10),
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10),
                                                           child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment
-                                                                .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Container(
                                                                 height: 70,
-                                                                padding: const EdgeInsets.only(right: 20),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            20),
                                                                 child: Text(
-                                                                    title![index]['title'],
+                                                                    title![index]
+                                                                        [
+                                                                        'title'],
                                                                     maxLines: 3,
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                     style: TextStyle(
-                                                                        fontSize: 16.sp,
-                                                                        height: 1.3,
-                                                                        color: const Color(0xff343434)
-                                                                    )
-                                                                ),
+                                                                        fontSize: 16
+                                                                            .sp,
+                                                                        height:
+                                                                            1.3,
+                                                                        color: const Color(
+                                                                            0xff343434))),
                                                               ),
                                                               Container(
-                                                                margin: const EdgeInsets.only(
-                                                                    top: 0),
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top: 0),
                                                                 child: Text(
-                                                                  read[index]['title'],
+                                                                  read[index]
+                                                                      ['title'],
                                                                   style: TextStyle(
-                                                                      fontSize: 15.sp,
+                                                                      fontSize:
+                                                                          15.sp,
                                                                       color: const Color(
-                                                                          0xffA3A3A3)
-                                                                  ),
+                                                                          0xffA3A3A3)),
                                                                 ),
                                                               )
                                                             ],
@@ -278,8 +327,7 @@ class _ArtsState extends State<Arts> {
                                             ),
                                           ),
                                         );
-                                      }
-                                  ),
+                                      }),
                                 );
                               } else if (tag == 1) {
                                 filterCategory('category-art-and-design');
@@ -289,25 +337,39 @@ class _ArtsState extends State<Arts> {
                                       physics: const ClampingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: filteredTitle.length,
-                                      itemBuilder: (BuildContext context, int index) {
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
                                         Map<String, dynamic> attributes2 =
-                                        filteredUrl[index]['attributes'];
+                                            filteredUrl[index]['attributes'];
                                         Map<String, dynamic> attributes =
-                                        filteredImage[index]['attributes'];
+                                            filteredImage[index]['attributes'];
                                         return Padding(
                                           padding: EdgeInsets.only(
                                               right: 1.1.h, top: 1.h),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             child: GestureDetector(
-                                              onTap: (){
-                                                put(convert(attributes2["href"]), filteredTitle[index]['title'], filteredCategory[index]['title'], attributes["data-orig-file"], filteredDate[index]['title']);
+                                              onTap: () {
+                                                put(
+                                                    convert(
+                                                        attributes2["href"]),
+                                                    filteredTitle[index]
+                                                        ['title'],
+                                                    filteredCategory[index]
+                                                        ['title'],
+                                                    attributes[
+                                                        "data-orig-file"],
+                                                    filteredDate[index]
+                                                        ['title']);
                                               },
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(20)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
                                                 child: Container(
                                                   width: 130,
                                                   padding: EdgeInsets.all(1.h),
@@ -317,47 +379,79 @@ class _ArtsState extends State<Arts> {
                                                         height: 11.h,
                                                         width: 11.h,
                                                         child: ClipRRect(
-                                                          borderRadius: BorderRadius.circular(15),
-                                                          child: CachedNetworkImage(
-                                                            imageUrl: attributes["data-orig-file"],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: attributes[
+                                                                "data-orig-file"],
                                                             fit: BoxFit.cover,
-                                                            placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                Container(
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.04)),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                       ),
                                                       Flexible(
                                                         fit: FlexFit.loose,
                                                         child: Container(
-                                                          margin: const EdgeInsets.only(left: 10),
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10),
                                                           child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment
-                                                                .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Container(
                                                                 height: 70,
-                                                                padding: const EdgeInsets.only(right: 20),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            20),
                                                                 child: Text(
-                                                                    filteredTitle[index]['title'],
+                                                                    filteredTitle[
+                                                                            index]
+                                                                        [
+                                                                        'title'],
                                                                     maxLines: 3,
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                     style: TextStyle(
-                                                                        fontSize: 16.sp,
-                                                                        height: 1.3,
-                                                                        color: const Color(0xff343434)
-                                                                    )
-                                                                ),
+                                                                        fontSize: 16
+                                                                            .sp,
+                                                                        height:
+                                                                            1.3,
+                                                                        color: const Color(
+                                                                            0xff343434))),
                                                               ),
                                                               Container(
-                                                                margin: const EdgeInsets.only(
-                                                                    top: 0),
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top: 0),
                                                                 child: Text(
-                                                                  filteredRead[index]['title'],
+                                                                  filteredRead[
+                                                                          index]
+                                                                      ['title'],
                                                                   style: TextStyle(
-                                                                      fontSize: 15.sp,
+                                                                      fontSize:
+                                                                          15.sp,
                                                                       color: const Color(
-                                                                          0xffA3A3A3)
-                                                                  ),
+                                                                          0xffA3A3A3)),
                                                                 ),
                                                               )
                                                             ],
@@ -371,8 +465,7 @@ class _ArtsState extends State<Arts> {
                                             ),
                                           ),
                                         );
-                                      }
-                                  ),
+                                      }),
                                 );
                               } else if (tag == 2) {
                                 filterCategory('category-music');
@@ -382,25 +475,39 @@ class _ArtsState extends State<Arts> {
                                       physics: const ClampingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: filteredTitle.length,
-                                      itemBuilder: (BuildContext context, int index) {
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
                                         Map<String, dynamic> attributes2 =
-                                        filteredUrl[index]['attributes'];
+                                            filteredUrl[index]['attributes'];
                                         Map<String, dynamic> attributes =
-                                        filteredImage[index]['attributes'];
+                                            filteredImage[index]['attributes'];
                                         return Padding(
                                           padding: EdgeInsets.only(
                                               right: 1.1.h, top: 1.h),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             child: GestureDetector(
-                                              onTap: (){
-                                                put(convert(attributes2["href"]), filteredTitle[index]['title'], filteredCategory[index]['title'], attributes["data-orig-file"], filteredDate[index]['title']);
+                                              onTap: () {
+                                                put(
+                                                    convert(
+                                                        attributes2["href"]),
+                                                    filteredTitle[index]
+                                                        ['title'],
+                                                    filteredCategory[index]
+                                                        ['title'],
+                                                    attributes[
+                                                        "data-orig-file"],
+                                                    filteredDate[index]
+                                                        ['title']);
                                               },
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(20)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
                                                 child: Container(
                                                   width: 130,
                                                   padding: EdgeInsets.all(1.h),
@@ -410,47 +517,79 @@ class _ArtsState extends State<Arts> {
                                                         height: 11.h,
                                                         width: 11.h,
                                                         child: ClipRRect(
-                                                          borderRadius: BorderRadius.circular(15),
-                                                          child: CachedNetworkImage(
-                                                            imageUrl: attributes["data-orig-file"],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: attributes[
+                                                                "data-orig-file"],
                                                             fit: BoxFit.cover,
-                                                            placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                Container(
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.04)),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                       ),
                                                       Flexible(
                                                         fit: FlexFit.loose,
                                                         child: Container(
-                                                          margin: const EdgeInsets.only(left: 10),
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10),
                                                           child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment
-                                                                .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Container(
                                                                 height: 70,
-                                                                padding: const EdgeInsets.only(right: 20),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            20),
                                                                 child: Text(
-                                                                    filteredTitle[index]['title'],
+                                                                    filteredTitle[
+                                                                            index]
+                                                                        [
+                                                                        'title'],
                                                                     maxLines: 3,
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                     style: TextStyle(
-                                                                        fontSize: 16.sp,
-                                                                        height: 1.3,
-                                                                        color: const Color(0xff343434)
-                                                                    )
-                                                                ),
+                                                                        fontSize: 16
+                                                                            .sp,
+                                                                        height:
+                                                                            1.3,
+                                                                        color: const Color(
+                                                                            0xff343434))),
                                                               ),
                                                               Container(
-                                                                margin: const EdgeInsets.only(
-                                                                    top: 0),
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top: 0),
                                                                 child: Text(
-                                                                  filteredRead[index]['title'],
+                                                                  filteredRead[
+                                                                          index]
+                                                                      ['title'],
                                                                   style: TextStyle(
-                                                                      fontSize: 15.sp,
+                                                                      fontSize:
+                                                                          15.sp,
                                                                       color: const Color(
-                                                                          0xffA3A3A3)
-                                                                  ),
+                                                                          0xffA3A3A3)),
                                                                 ),
                                                               )
                                                             ],
@@ -464,8 +603,7 @@ class _ArtsState extends State<Arts> {
                                             ),
                                           ),
                                         );
-                                      }
-                                  ),
+                                      }),
                                 );
                               } else if (tag == 3) {
                                 filterCategory('category-dance');
@@ -475,25 +613,39 @@ class _ArtsState extends State<Arts> {
                                       physics: const ClampingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: filteredTitle.length,
-                                      itemBuilder: (BuildContext context, int index) {
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
                                         Map<String, dynamic> attributes2 =
-                                        filteredUrl[index]['attributes'];
+                                            filteredUrl[index]['attributes'];
                                         Map<String, dynamic> attributes =
-                                        filteredImage[index]['attributes'];
+                                            filteredImage[index]['attributes'];
                                         return Padding(
                                           padding: EdgeInsets.only(
                                               right: 1.1.h, top: 1.h),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             child: GestureDetector(
-                                              onTap: (){
-                                                put(convert(attributes2["href"]), filteredTitle[index]['title'], filteredCategory[index]['title'], attributes["data-orig-file"], filteredDate[index]['title']);
+                                              onTap: () {
+                                                put(
+                                                    convert(
+                                                        attributes2["href"]),
+                                                    filteredTitle[index]
+                                                        ['title'],
+                                                    filteredCategory[index]
+                                                        ['title'],
+                                                    attributes[
+                                                        "data-orig-file"],
+                                                    filteredDate[index]
+                                                        ['title']);
                                               },
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(20)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
                                                 child: Container(
                                                   width: 130,
                                                   padding: EdgeInsets.all(1.h),
@@ -503,47 +655,79 @@ class _ArtsState extends State<Arts> {
                                                         height: 11.h,
                                                         width: 11.h,
                                                         child: ClipRRect(
-                                                          borderRadius: BorderRadius.circular(15),
-                                                          child: CachedNetworkImage(
-                                                            imageUrl: attributes["data-orig-file"],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: attributes[
+                                                                "data-orig-file"],
                                                             fit: BoxFit.cover,
-                                                            placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                Container(
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.04)),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                       ),
                                                       Flexible(
                                                         fit: FlexFit.loose,
                                                         child: Container(
-                                                          margin: const EdgeInsets.only(left: 10),
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10),
                                                           child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment
-                                                                .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Container(
                                                                 height: 70,
-                                                                padding: const EdgeInsets.only(right: 20),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            20),
                                                                 child: Text(
-                                                                    filteredTitle[index]['title'],
+                                                                    filteredTitle[
+                                                                            index]
+                                                                        [
+                                                                        'title'],
                                                                     maxLines: 3,
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                     style: TextStyle(
-                                                                        fontSize: 16.sp,
-                                                                        height: 1.3,
-                                                                        color: const Color(0xff343434)
-                                                                    )
-                                                                ),
+                                                                        fontSize: 16
+                                                                            .sp,
+                                                                        height:
+                                                                            1.3,
+                                                                        color: const Color(
+                                                                            0xff343434))),
                                                               ),
                                                               Container(
-                                                                margin: const EdgeInsets.only(
-                                                                    top: 0),
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top: 0),
                                                                 child: Text(
-                                                                  filteredRead[index]['title'],
+                                                                  filteredRead[
+                                                                          index]
+                                                                      ['title'],
                                                                   style: TextStyle(
-                                                                      fontSize: 15.sp,
+                                                                      fontSize:
+                                                                          15.sp,
                                                                       color: const Color(
-                                                                          0xffA3A3A3)
-                                                                  ),
+                                                                          0xffA3A3A3)),
                                                                 ),
                                                               )
                                                             ],
@@ -557,8 +741,7 @@ class _ArtsState extends State<Arts> {
                                             ),
                                           ),
                                         );
-                                      }
-                                  ),
+                                      }),
                                 );
                               } else {
                                 filterCategory('category-drama');
@@ -568,25 +751,39 @@ class _ArtsState extends State<Arts> {
                                       physics: const ClampingScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: filteredTitle.length,
-                                      itemBuilder: (BuildContext context, int index) {
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
                                         Map<String, dynamic> attributes2 =
-                                        filteredUrl[index]['attributes'];
+                                            filteredUrl[index]['attributes'];
                                         Map<String, dynamic> attributes =
-                                        filteredImage[index]['attributes'];
+                                            filteredImage[index]['attributes'];
                                         return Padding(
                                           padding: EdgeInsets.only(
                                               right: 1.1.h, top: 1.h),
                                           child: Container(
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20),
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
                                             ),
                                             child: GestureDetector(
-                                              onTap: (){
-                                                put(convert(attributes2["href"]), filteredTitle[index]['title'], filteredCategory[index]['title'], attributes["data-orig-file"], filteredDate[index]['title']);
+                                              onTap: () {
+                                                put(
+                                                    convert(
+                                                        attributes2["href"]),
+                                                    filteredTitle[index]
+                                                        ['title'],
+                                                    filteredCategory[index]
+                                                        ['title'],
+                                                    attributes[
+                                                        "data-orig-file"],
+                                                    filteredDate[index]
+                                                        ['title']);
                                               },
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(20)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
                                                 child: Container(
                                                   width: 130,
                                                   padding: EdgeInsets.all(1.h),
@@ -596,47 +793,79 @@ class _ArtsState extends State<Arts> {
                                                         height: 11.h,
                                                         width: 11.h,
                                                         child: ClipRRect(
-                                                          borderRadius: BorderRadius.circular(15),
-                                                          child: CachedNetworkImage(
-                                                            imageUrl: attributes["data-orig-file"],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          child:
+                                                              CachedNetworkImage(
+                                                            imageUrl: attributes[
+                                                                "data-orig-file"],
                                                             fit: BoxFit.cover,
-                                                            placeholder: (context, url) => Container(color: Colors.black.withOpacity(0.04)),
-                                                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                Container(
+                                                                    color: Colors
+                                                                        .black
+                                                                        .withOpacity(
+                                                                            0.04)),
+                                                            errorWidget: (context,
+                                                                    url,
+                                                                    error) =>
+                                                                const Icon(Icons
+                                                                    .error),
                                                           ),
                                                         ),
                                                       ),
                                                       Flexible(
                                                         fit: FlexFit.loose,
                                                         child: Container(
-                                                          margin: const EdgeInsets.only(left: 10),
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10),
                                                           child: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment
-                                                                .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Container(
                                                                 height: 70,
-                                                                padding: const EdgeInsets.only(right: 20),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            20),
                                                                 child: Text(
-                                                                    filteredTitle[index]['title'],
+                                                                    filteredTitle[
+                                                                            index]
+                                                                        [
+                                                                        'title'],
                                                                     maxLines: 3,
-                                                                    overflow: TextOverflow.ellipsis,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                     style: TextStyle(
-                                                                        fontSize: 16.sp,
-                                                                        height: 1.3,
-                                                                        color: const Color(0xff343434)
-                                                                    )
-                                                                ),
+                                                                        fontSize: 16
+                                                                            .sp,
+                                                                        height:
+                                                                            1.3,
+                                                                        color: const Color(
+                                                                            0xff343434))),
                                                               ),
                                                               Container(
-                                                                margin: const EdgeInsets.only(
-                                                                    top: 0),
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top: 0),
                                                                 child: Text(
-                                                                  filteredRead[index]['title'],
+                                                                  filteredRead[
+                                                                          index]
+                                                                      ['title'],
                                                                   style: TextStyle(
-                                                                      fontSize: 15.sp,
+                                                                      fontSize:
+                                                                          15.sp,
                                                                       color: const Color(
-                                                                          0xffA3A3A3)
-                                                                  ),
+                                                                          0xffA3A3A3)),
                                                                 ),
                                                               )
                                                             ],
@@ -650,27 +879,24 @@ class _ArtsState extends State<Arts> {
                                             ),
                                           ),
                                         );
-                                      }
-                                  ),
+                                      }),
                                 );
                               }
-                            }
+                            }),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              );
-            } else if (_selectedIndex == 0) {
-              return const Sports();
-            } else if (_selectedIndex == 1) {
-              return const HomePage();
-            } else {
-              return const Bulletin();
-            }
-          },
-        )
-      ),
+                  );
+          } else if (_selectedIndex == 0) {
+            return const Sports();
+          } else if (_selectedIndex == 1) {
+            return const HomePage();
+          } else {
+            return const Bulletin();
+          }
+        },
+      )),
     );
   }
 }
