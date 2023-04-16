@@ -132,7 +132,7 @@ class _HomePagePageState extends State<HomePagePage> {
 
   @override
   void initState() {
-    context.read<Store3>().getSportsData();
+    context.read<Store3>().loaded = false;
   }
 
   void _onItemTapped(int index) {

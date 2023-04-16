@@ -7,6 +7,7 @@ import '../state.dart';
 import 'bulletin.dart';
 import 'package:nlcshub_app/myAppBar.dart';
 import 'package:nlcshub_app/myDrawer.dart';
+import 'package:lottie/lottie.dart';
 
 int select = 0;
 
@@ -215,9 +216,7 @@ class _ItemTileState extends State<ItemTile> {
           margin: EdgeInsets.only(top: 1.h),
           duration: const Duration(milliseconds: 200),
           height: widget.expanded[widget.index]
-              ? date.isNotEmpty
-                  ? 25.65.h + (19.h * (date.length - 1))
-                  : 9.h
+              ? 25.65.h + (19.h * (date.length - 1))
               : 9.h,
           child: Card(
             color: const Color.fromRGBO(241, 242, 246, 1.0),
@@ -245,9 +244,7 @@ class _ItemTileState extends State<ItemTile> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   height: widget.expanded[widget.index]
-                      ? date.isNotEmpty
-                          ? 9.h + (19.h * (date.length - 1))
-                          : 0
+                      ? 20.h + (19.h * (date.length - 1))
                       : 0,
                   width: 100.w,
                   child: widget.expanded[widget.index]
@@ -567,150 +564,151 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
         ListView.builder(
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
-            itemCount: date.isNotEmpty ? date.length : 1,
+            itemCount: date.length,
             itemBuilder: (BuildContext context, int index) {
-              print(date.length);
               return Container(
                   margin: EdgeInsets.only(top: 2.5.h),
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
                   height: 16.5.h,
-                  decoration: context.read<Store3>().loaded == false
-                      ? BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.black.withOpacity(0.04))
-                      : BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              nlcs,
-                              opp[index] == "fps"
-                                  ? fps
-                                  : opp[index] == "nlcs"
-                                      ? nlcs
-                                      : opp[index] == "isb"
-                                          ? isb
-                                          : opp[index] == "bfs"
-                                              ? bfs
-                                              : opp[index] == "sja"
-                                                  ? sja
-                                                  : opp[index] == "kisj"
-                                                      ? kisj
-                                                      : opp[index] == "bha"
-                                                          ? bha
-                                                          : opp[index] == "kis"
-                                                              ? kis
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          nlcs,
+                          opp[index] == "fps"
+                              ? fps
+                              : opp[index] == "nlcs"
+                                  ? nlcs
+                                  : opp[index] == "isb"
+                                      ? isb
+                                      : opp[index] == "bfs"
+                                          ? bfs
+                                          : opp[index] == "sja"
+                                              ? sja
+                                              : opp[index] == "kisj"
+                                                  ? kisj
+                                                  : opp[index] == "bha"
+                                                      ? bha
+                                                      : opp[index] == "kis"
+                                                          ? kis
+                                                          : opp[index] == "bis"
+                                                              ? bis
                                                               : opp[index] ==
-                                                                      "bis"
-                                                                  ? bis
-                                                                  : opp[index] ==
-                                                                          "gsis"
-                                                                      ? gsis
-                                                                      : sis
-                            ],
-                          )),
-                  child: context.read<Store3>().loaded == true
-                      ? Row(
-                          children: [
-                            Flexible(
-                              flex: 2,
-                              child: Container(
-                                padding: EdgeInsets.only(right: 5.w),
-                                child: CachedNetworkImage(
-                                  imageUrl: context.read<Store3>().nlcsUrl,
+                                                                      "gsis"
+                                                                  ? gsis
+                                                                  : sis
+                        ],
+                      )),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          padding: EdgeInsets.only(right: 5.w),
+                          child: CachedNetworkImage(
+                            imageUrl: context.read<Store3>().nlcsUrl,
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                          flex: 3,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 3.h),
+                            decoration: BoxDecoration(
+                                color: const Color(0x40ffffff),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: SizedBox(
+                                      width: double.infinity,
+                                      child: Text(
+                                        tour[index],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13.sp),
+                                      )),
                                 ),
-                              ),
-                            ),
-                            Flexible(
-                                flex: 3,
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(vertical: 3.h),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0x40ffffff),
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Flexible(
-                                        flex: 1,
-                                        child: SizedBox(
-                                            width: double.infinity,
+                                Flexible(
+                                  flex: 2,
+                                  child: Container(
+                                    margin:
+                                        EdgeInsets.symmetric(vertical: 0.8.h),
+                                    width: double.infinity,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 5.w),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: <Widget>[
+                                          SizedBox(
+                                            width: 7.w,
                                             child: Text(
-                                              tour[index],
+                                              "${score[index][0]}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 13.sp),
-                                            )),
-                                      ),
-                                      Flexible(
-                                        flex: 2,
-                                        child: Container(
-                                          margin: EdgeInsets.symmetric(
-                                              vertical: 0.8.h),
-                                          width: double.infinity,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5.w),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: <Widget>[
-                                                Text(
-                                                  "${score[index][0]}",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20.sp),
-                                                ),
-                                                const VerticalDivider(
-                                                  color: Color(0x80ffffff),
-                                                  thickness: 1.3,
-                                                  width: 20,
-                                                ),
-                                                Text(
-                                                  "${score[index][1]}",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20.sp),
-                                                )
-                                              ],
+                                                  fontSize: 20.sp),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 1,
-                                        child: SizedBox(
-                                            //margin: EdgeInsets.only(top: 0.8.h),
-                                            width: double.infinity,
+                                          SizedBox(
+                                            width: 7.w,
+                                            child: const VerticalDivider(
+                                              color: Color(0x80ffffff),
+                                              thickness: 1.3,
+                                              width: 20,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 7.w,
                                             child: Text(
-                                              date[index],
+                                              "${score[index][1]}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 13.sp),
-                                            )),
+                                                  fontSize: 20.sp),
+                                            ),
+                                          )
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                )),
-                            Flexible(
-                              flex: 2,
-                              child: Center(
-                                child: Container(
-                                  height: 7.h,
-                                  padding: EdgeInsets.only(left: 5.w),
-                                  child: CachedNetworkImage(
-                                    imageUrl: logoUrl[index],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            )
-                          ],
-                        )
-                      : Container());
+                                Flexible(
+                                  flex: 1,
+                                  child: SizedBox(
+                                      width: double.infinity,
+                                      child: Text(
+                                        date[index],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13.sp),
+                                      )),
+                                ),
+                              ],
+                            ),
+                          )),
+                      Flexible(
+                        flex: 2,
+                        child: Center(
+                          child: Container(
+                            height: 7.h,
+                            padding: EdgeInsets.only(left: 5.w),
+                            child: CachedNetworkImage(
+                              imageUrl: logoUrl[index],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ));
             })
       ],
     );
@@ -872,136 +870,165 @@ class _SportsState extends State<Sports> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: LayoutBuilder(builder: (context, constraints) {
-      if (_selectedIndex == -1) {
-        return Padding(
-          padding: EdgeInsets.only(left: 5.w, right: 5.w),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Center(
+    return SafeArea(
+        child: FutureBuilder<bool>(
+            future: context.read<Store3>().getSportsData(),
+            builder: (context, AsyncSnapshot<bool> snapshot) {
+              if (!snapshot.hasData) {
+                return Container(
+                    color: const Color.fromRGBO(241, 242, 246, 1.0),
+                    child: Center(child: Lottie.asset('assets/lottie.json')));
+              }
+              return LayoutBuilder(builder: (context, constraints) {
+                if (_selectedIndex == -1) {
+                  return Padding(
+                    padding: EdgeInsets.only(left: 5.w, right: 5.w),
                     child: SingleChildScrollView(
-                        scrollDirection: axis,
-                        physics: scrollPhysics ?? const ScrollPhysics(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                            listOfChipNames.length,
-                            (index) => Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: widgetSpacing,
-                              ),
-                              child: Column(
-                                children: [
-                                  ChoiceChip(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 7),
-                                    label: Icon(listOfChipNames[index],
-                                        color: _textColorizer(index)),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          borderRadiiList.length == 1
-                                              ? borderRadiiList.first
-                                              : borderRadiiList[index]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Center(
+                              child: SingleChildScrollView(
+                                  scrollDirection: axis,
+                                  physics:
+                                      scrollPhysics ?? const ScrollPhysics(),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: List.generate(
+                                      listOfChipNames.length,
+                                      (index) => Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: widgetSpacing,
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            ChoiceChip(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 7),
+                                              label: Icon(
+                                                  listOfChipNames[index],
+                                                  color: _textColorizer(index)),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        borderRadiiList
+                                                                    .length ==
+                                                                1
+                                                            ? borderRadiiList
+                                                                .first
+                                                            : borderRadiiList[
+                                                                index]),
+                                              ),
+                                              backgroundColor:
+                                                  inactiveBgColorList
+                                                              .length ==
+                                                          1
+                                                      ? inactiveBgColorList
+                                                          .first
+                                                      : inactiveBgColorList[
+                                                          index],
+                                              selected:
+                                                  _checkChipSelectionStatus(
+                                                      index),
+                                              selectedColor:
+                                                  _tileColorizer(index),
+                                              onSelected: (val) {
+                                                _handleOnSelected(index);
+                                                // update UI
+                                                setState(() {
+                                                  select = index;
+                                                });
+                                              },
+                                            ),
+                                            Text(label[index])
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    backgroundColor:
-                                        inactiveBgColorList.length == 1
-                                            ? inactiveBgColorList.first
-                                            : inactiveBgColorList[index],
-                                    selected: _checkChipSelectionStatus(index),
-                                    selectedColor: _tileColorizer(index),
-                                    onSelected: (val) {
-                                      _handleOnSelected(index);
-                                      // update UI
-                                      setState(() {
-                                        select = index;
-                                      });
-                                    },
-                                  ),
-                                  Text(label[index])
-                                ],
-                              ),
-                            ),
-                          ),
-                        ))),
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (select == 0) {
-                      //List<bool> expanded = [false, false, false, false, false, false, false];
-                      List<bool> expanded = [false, false, false];
-                      return ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 3,
-                        itemBuilder: (BuildContext context, int index) {
-                          List<String> divisions = [
-                            'Boys HS Football A',
-                            'Girls HS Football A',
-                            'Girls HS Football B',
-                          ];
-                          return ItemTile(
-                              division: divisions[index],
-                              index: 1,
-                              expanded: expanded);
-                        },
-                      );
-                    } else if (select == 1) {
-                      //List<bool> expanded = [false, false, false, false, false, false, false];
-                      List<bool> expanded = [false, false, false];
-                      return ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 4,
-                        itemBuilder: (BuildContext context, int index) {
-                          List<String> divisions = [
-                            'Boys HS Basketball A',
-                            'Boys HS Basketball B',
-                            'Girls HS Basketball A',
-                            'Girls HS Basketball B',
-                          ];
-                          return ItemTile(
-                              division: divisions[index],
-                              index: 2,
-                              expanded: expanded);
-                        },
-                      );
-                    } //else if (select == 2) {
-                    else {
-                      //List<bool> expanded = [false, false, false, false, false, false, false];
-                      List<bool> expanded = [false, false, false, false];
-                      return ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 4,
-                        itemBuilder: (BuildContext context, int index) {
-                          List<String> divisions = [
-                            'Boys HS Volleyball A',
-                            'Boys HS Volleyball B',
-                            'Girls HS Volleyball A',
-                            'Girls HS Volleyball B',
-                          ];
-                          return ItemTile(
-                              division: divisions[index],
-                              index: 0,
-                              expanded: expanded);
-                        },
-                      );
-                    }
-                  },
-                )
-              ],
-            ),
-          ),
-        );
-      } else if (_selectedIndex == 0) {
-        return const Sports();
-      } else if (_selectedIndex == 1) {
-        return const HomePage();
-      } else {
-        return const Bulletin();
-      }
-    }));
+                                  ))),
+                          LayoutBuilder(
+                            builder: (context, constraints) {
+                              if (select == 0) {
+                                List<bool> expanded = [false, false, false];
+                                return ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 3,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    List<String> divisions = [
+                                      'Boys HS Football A',
+                                      'Girls HS Football A',
+                                      'Girls HS Football B',
+                                    ];
+                                    return ItemTile(
+                                        division: divisions[index],
+                                        index: 1,
+                                        expanded: expanded);
+                                  },
+                                );
+                              } else if (select == 1) {
+                                List<bool> expanded = [false, false, false];
+                                return ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 4,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    List<String> divisions = [
+                                      'Boys HS Basketball A',
+                                      'Boys HS Basketball B',
+                                      'Girls HS Basketball A',
+                                      'Girls HS Basketball B',
+                                    ];
+                                    return ItemTile(
+                                        division: divisions[index],
+                                        index: 2,
+                                        expanded: expanded);
+                                  },
+                                );
+                              } else {
+                                List<bool> expanded = [
+                                  false,
+                                  false,
+                                  false,
+                                  false
+                                ];
+                                return ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 4,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    List<String> divisions = [
+                                      'Boys HS Volleyball A',
+                                      'Boys HS Volleyball B',
+                                      'Girls HS Volleyball A',
+                                      'Girls HS Volleyball B',
+                                    ];
+                                    return ItemTile(
+                                        division: divisions[index],
+                                        index: 0,
+                                        expanded: expanded);
+                                  },
+                                );
+                              }
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                } else if (_selectedIndex == 0) {
+                  return const Sports();
+                } else if (_selectedIndex == 1) {
+                  return const HomePage();
+                } else {
+                  return const Bulletin();
+                }
+              });
+            }));
   }
 }
 
