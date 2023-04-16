@@ -2,7 +2,7 @@ name: nlcshub_app
 description: A new Flutter project.
 publish_to: 'none'
 
-version: 1.1.1+4
+version: 1.2.0+5
 
 environment:
   sdk: '>=2.19.4 <3.0.0'
