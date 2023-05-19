@@ -16,16 +16,6 @@ class Store1 extends ChangeNotifier {
   double noro = 0;
   String nextCompetition = "";
 
-  /*List<String> sport = [];
-  List<String> tournament = [];
-  List<String> date = [];
-  List<bool> isA = [];
-  List<bool> isBoy = [];
-  List<List<dynamic>> score = [];
-  List<String> opp = [];
-  List<String> logoUrl = [];
-  String nlcsUrl = "";*/
-
   List<String> podTitle = [];
   List<String> podPath = [];
   List<String> podImage = [];
@@ -37,20 +27,12 @@ class Store1 extends ChangeNotifier {
   Future<bool> getData() async {
     title = [];
     path = [];
-    /*sport = [];
-    tournament = [];
-    date = [];
-    isA = [];
-    isBoy = [];
-    score = [];
-    opp = [];*/
     podTitle = [];
     podDate = [];
     podImage = [];
     podPath = [];
     podImg = [];
     podMp3 = [];
-    //logoUrl = [];
 
     await firestore
         .collection("bulletin")
