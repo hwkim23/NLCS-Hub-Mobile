@@ -40,7 +40,6 @@ class _ItemTileState extends State<ItemTile> {
   void filter(String division) {
     List<String> separate = division.split(' ');
 
-    //List<String> tempLogoUrl = [];
     List<String> tempDate = [];
     List<String> tempOpp = [];
     List<List<dynamic>> tempScore = [];
@@ -54,7 +53,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -64,7 +62,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -76,7 +73,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -86,7 +82,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -100,7 +95,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -110,7 +104,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -122,7 +115,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -132,7 +124,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -146,7 +137,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -156,7 +146,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -168,7 +157,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -178,7 +166,6 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -191,7 +178,6 @@ class _ItemTileState extends State<ItemTile> {
     }
 
     setState(() {
-      //logoUrl = tempLogoUrl;
       date = tempDate;
       opp = tempOpp;
       score = tempScore;
@@ -285,7 +271,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   Color isb = const Color.fromARGB(255, 181, 39, 51);
   Color fps = const Color(0xffA68845);
 
-  //List<String> logoUrl = [];
   List<String> date = [];
   List<String> opp = [];
   List<List<dynamic>> score = [];
@@ -297,7 +282,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   void filter(String division) {
     List<String> separate = division.split(' ');
 
-    //List<String> tempLogoUrl = [];
     List<String> tempDate = [];
     List<String> tempOpp = [];
     List<List<dynamic>> tempScore = [];
@@ -311,7 +295,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -321,7 +304,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -333,7 +315,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -343,7 +324,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -357,7 +337,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -367,7 +346,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -379,7 +357,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -389,7 +366,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -403,7 +379,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -413,7 +388,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -425,7 +399,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -435,7 +408,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -542,7 +514,6 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
     }
 
     setState(() {
-      //logoUrl = tempLogoUrl;
       date = tempDate;
       opp = tempOpp;
       score = tempScore;

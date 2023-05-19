@@ -141,8 +141,6 @@ class Store3 extends ChangeNotifier {
   bool loading = false;
 
   Future<bool> getSportsData() async {
-    print("loading ${loading}");
-    print("loaded ${loaded}");
     if (loading == false && loaded == false) {
       sport = [];
       tournament = [];
@@ -173,13 +171,6 @@ class Store3 extends ChangeNotifier {
 
       final nlcs = FirebaseStorage.instance.ref().child('school_logo/nlcs.png');
       nlcsUrl = await nlcs.getDownloadURL();
-
-      /*for (int i = 0; i < opp.length; i++) {
-        final ref =
-            FirebaseStorage.instance.ref().child('school_logo/${opp[i]}.png');
-        var url = await ref.getDownloadURL();
-        logoUrl.add(url);
-      }*/
 
       loaded = true;
 
