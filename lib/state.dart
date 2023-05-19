@@ -75,18 +75,6 @@ class Store1 extends ChangeNotifier {
       nextCompetition = data?['nextCompetition'];
     }
 
-    /*await firestore.collection("sport").orderBy('date', descending: true).get().then((QuerySnapshot ds) {
-      for (var doc in ds.docs) {
-        sport.add(doc["sportsType"]);
-        tournament.add(doc["category"]);
-        date.add(doc["date"].toDate().toString().substring(0,10));
-        isA.add(doc["isA"]);
-        isBoy.add(doc["isBoy"]);
-        score.add(doc["score"]);
-        opp.add(doc["opp"]);
-      }
-    });*/
-
     await firestore
         .collection("podcast")
         .orderBy('date', descending: true)
@@ -150,9 +138,12 @@ class Store3 extends ChangeNotifier {
   List<String> logoUrl = [];
   String nlcsUrl = "";
   bool loaded = false;
+  bool loading = false;
 
   Future<bool> getSportsData() async {
-    if (loaded == false) {
+    print("loading ${loading}");
+    print("loaded ${loaded}");
+    if (loading == false && loaded == false) {
       sport = [];
       tournament = [];
       date = [];
@@ -161,6 +152,8 @@ class Store3 extends ChangeNotifier {
       score = [];
       opp = [];
       logoUrl = [];
+
+      loading = true;
 
       await firestore
           .collection("sport")
@@ -181,19 +174,19 @@ class Store3 extends ChangeNotifier {
       final nlcs = FirebaseStorage.instance.ref().child('school_logo/nlcs.png');
       nlcsUrl = await nlcs.getDownloadURL();
 
-      for (int i = 0; i < opp.length; i++) {
+      /*for (int i = 0; i < opp.length; i++) {
         final ref =
             FirebaseStorage.instance.ref().child('school_logo/${opp[i]}.png');
         var url = await ref.getDownloadURL();
         logoUrl.add(url);
-      }
+      }*/
 
       loaded = true;
 
       notifyListeners();
 
       return true;
-    } else {
+    } else  {
       return true;
     }
   }

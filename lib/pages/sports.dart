@@ -28,7 +28,7 @@ class ItemTile extends StatefulWidget {
 }
 
 class _ItemTileState extends State<ItemTile> {
-  List<String> logoUrl = [];
+  //List<String> logoUrl = [];
   List<String> date = [];
   List<String> opp = [];
   List<List<dynamic>> score = [];
@@ -40,7 +40,7 @@ class _ItemTileState extends State<ItemTile> {
   void filter(String division) {
     List<String> separate = division.split(' ');
 
-    List<String> tempLogoUrl = [];
+    //List<String> tempLogoUrl = [];
     List<String> tempDate = [];
     List<String> tempOpp = [];
     List<List<dynamic>> tempScore = [];
@@ -54,7 +54,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -64,7 +64,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -76,7 +76,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -86,7 +86,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -100,7 +100,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -110,7 +110,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -122,7 +122,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -132,7 +132,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -146,7 +146,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -156,7 +156,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -168,7 +168,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -178,7 +178,7 @@ class _ItemTileState extends State<ItemTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -191,7 +191,7 @@ class _ItemTileState extends State<ItemTile> {
     }
 
     setState(() {
-      logoUrl = tempLogoUrl;
+      //logoUrl = tempLogoUrl;
       date = tempDate;
       opp = tempOpp;
       score = tempScore;
@@ -285,7 +285,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   Color isb = const Color.fromARGB(255, 181, 39, 51);
   Color fps = const Color(0xffA68845);
 
-  List<String> logoUrl = [];
+  //List<String> logoUrl = [];
   List<String> date = [];
   List<String> opp = [];
   List<List<dynamic>> score = [];
@@ -297,7 +297,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
   void filter(String division) {
     List<String> separate = division.split(' ');
 
-    List<String> tempLogoUrl = [];
+    //List<String> tempLogoUrl = [];
     List<String> tempDate = [];
     List<String> tempOpp = [];
     List<List<dynamic>> tempScore = [];
@@ -311,7 +311,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -321,7 +321,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -333,7 +333,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -343,7 +343,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "volleyball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -357,7 +357,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -367,7 +367,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -379,7 +379,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -389,7 +389,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "football") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -403,7 +403,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -413,7 +413,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == true &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -425,7 +425,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == true &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -435,7 +435,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
               if (context.read<Store3>().isBoy[i] == false &&
                   context.read<Store3>().isA[i] == false &&
                   context.read<Store3>().sport[i] == "basketball") {
-                tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
+                //tempLogoUrl.add(context.read<Store3>().logoUrl[i]);
                 tempDate.add(context.read<Store3>().date[i]);
                 tempOpp.add(context.read<Store3>().opp[i]);
                 tempScore.add(context.read<Store3>().score[i]);
@@ -542,7 +542,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
     }
 
     setState(() {
-      logoUrl = tempLogoUrl;
+      //logoUrl = tempLogoUrl;
       date = tempDate;
       opp = tempOpp;
       score = tempScore;
@@ -648,7 +648,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                             MainAxisAlignment.spaceAround,
                                         children: <Widget>[
                                           SizedBox(
-                                            width: 7.w,
+                                            width: 8.w,
                                             child: Text(
                                               "${score[index][0]}",
                                               textAlign: TextAlign.center,
@@ -666,7 +666,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: 7.w,
+                                            width: 8.w,
                                             child: Text(
                                               "${score[index][1]}",
                                               textAlign: TextAlign.center,
@@ -701,9 +701,9 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                           child: Container(
                             height: 7.h,
                             padding: EdgeInsets.only(left: 5.w),
-                            child: CachedNetworkImage(
+                            child: Image.asset('assets/school_logos/${opp[index]}.png')/*CachedNetworkImage(
                               imageUrl: logoUrl[index],
-                            ),
+                            ),*/
                           ),
                         ),
                       )
@@ -871,163 +871,154 @@ class _SportsState extends State<Sports> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: FutureBuilder<bool>(
-            future: context.read<Store3>().getSportsData(),
-            builder: (context, AsyncSnapshot<bool> snapshot) {
-              if (!snapshot.hasData) {
-                return Container(
-                    color: const Color.fromRGBO(241, 242, 246, 1.0),
-                    child: Center(child: Lottie.asset('assets/lottie.json')));
-              }
-              return LayoutBuilder(builder: (context, constraints) {
-                if (_selectedIndex == -1) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: 5.w, right: 5.w),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Center(
-                              child: SingleChildScrollView(
-                                  scrollDirection: axis,
-                                  physics:
-                                      scrollPhysics ?? const ScrollPhysics(),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: List.generate(
-                                      listOfChipNames.length,
-                                      (index) => Padding(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: widgetSpacing,
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            ChoiceChip(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 7),
-                                              label: Icon(
-                                                  listOfChipNames[index],
-                                                  color: _textColorizer(index)),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        borderRadiiList
-                                                                    .length ==
-                                                                1
-                                                            ? borderRadiiList
-                                                                .first
-                                                            : borderRadiiList[
-                                                                index]),
-                                              ),
-                                              backgroundColor:
-                                                  inactiveBgColorList
-                                                              .length ==
-                                                          1
-                                                      ? inactiveBgColorList
-                                                          .first
-                                                      : inactiveBgColorList[
-                                                          index],
-                                              selected:
-                                                  _checkChipSelectionStatus(
-                                                      index),
-                                              selectedColor:
-                                                  _tileColorizer(index),
-                                              onSelected: (val) {
-                                                _handleOnSelected(index);
-                                                // update UI
-                                                setState(() {
-                                                  select = index;
-                                                });
-                                              },
+        child: LayoutBuilder(builder: (context, constraints) {
+              if (_selectedIndex == -1) {
+                return Padding(
+                  padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Center(
+                            child: SingleChildScrollView(
+                                scrollDirection: axis,
+                                physics:
+                                    scrollPhysics ?? const ScrollPhysics(),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: List.generate(
+                                    listOfChipNames.length,
+                                    (index) => Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: widgetSpacing,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          ChoiceChip(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 7),
+                                            label: Icon(
+                                                listOfChipNames[index],
+                                                color: _textColorizer(index)),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      borderRadiiList
+                                                                  .length ==
+                                                              1
+                                                          ? borderRadiiList
+                                                              .first
+                                                          : borderRadiiList[
+                                                              index]),
                                             ),
-                                            Text(label[index])
-                                          ],
-                                        ),
+                                            backgroundColor:
+                                                inactiveBgColorList
+                                                            .length ==
+                                                        1
+                                                    ? inactiveBgColorList
+                                                        .first
+                                                    : inactiveBgColorList[
+                                                        index],
+                                            selected:
+                                                _checkChipSelectionStatus(
+                                                    index),
+                                            selectedColor:
+                                                _tileColorizer(index),
+                                            onSelected: (val) {
+                                              _handleOnSelected(index);
+                                              // update UI
+                                              setState(() {
+                                                select = index;
+                                              });
+                                            },
+                                          ),
+                                          Text(label[index])
+                                        ],
                                       ),
                                     ),
-                                  ))),
-                          LayoutBuilder(
-                            builder: (context, constraints) {
-                              if (select == 0) {
-                                List<bool> expanded = [false, false, false];
-                                return ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: 3,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    List<String> divisions = [
-                                      'Boys HS Football A',
-                                      'Girls HS Football A',
-                                      'Girls HS Football B',
-                                    ];
-                                    return ItemTile(
-                                        division: divisions[index],
-                                        index: 1,
-                                        expanded: expanded);
-                                  },
-                                );
-                              } else if (select == 1) {
-                                List<bool> expanded = [false, false, false];
-                                return ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: 4,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    List<String> divisions = [
-                                      'Boys HS Basketball A',
-                                      'Boys HS Basketball B',
-                                      'Girls HS Basketball A',
-                                      'Girls HS Basketball B',
-                                    ];
-                                    return ItemTile(
-                                        division: divisions[index],
-                                        index: 2,
-                                        expanded: expanded);
-                                  },
-                                );
-                              } else {
-                                List<bool> expanded = [
-                                  false,
-                                  false,
-                                  false,
-                                  false
-                                ];
-                                return ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: 4,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    List<String> divisions = [
-                                      'Boys HS Volleyball A',
-                                      'Boys HS Volleyball B',
-                                      'Girls HS Volleyball A',
-                                      'Girls HS Volleyball B',
-                                    ];
-                                    return ItemTile(
-                                        division: divisions[index],
-                                        index: 0,
-                                        expanded: expanded);
-                                  },
-                                );
-                              }
-                            },
-                          )
-                        ],
-                      ),
+                                  ),
+                                ))),
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            if (select == 0) {
+                              List<bool> expanded = [false, false, false];
+                              return ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: 3,
+                                itemBuilder:
+                                    (BuildContext context, int index) {
+                                  List<String> divisions = [
+                                    'Boys HS Football A',
+                                    'Girls HS Football A',
+                                    'Girls HS Football B',
+                                  ];
+                                  return ItemTile(
+                                      division: divisions[index],
+                                      index: 1,
+                                      expanded: expanded);
+                                },
+                              );
+                            } else if (select == 1) {
+                              List<bool> expanded = [false, false, false];
+                              return ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: 4,
+                                itemBuilder:
+                                    (BuildContext context, int index) {
+                                  List<String> divisions = [
+                                    'Boys HS Basketball A',
+                                    'Boys HS Basketball B',
+                                    'Girls HS Basketball A',
+                                    'Girls HS Basketball B',
+                                  ];
+                                  return ItemTile(
+                                      division: divisions[index],
+                                      index: 2,
+                                      expanded: expanded);
+                                },
+                              );
+                            } else {
+                              List<bool> expanded = [
+                                false,
+                                false,
+                                false,
+                                false
+                              ];
+                              return ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: 4,
+                                itemBuilder:
+                                    (BuildContext context, int index) {
+                                  List<String> divisions = [
+                                    'Boys HS Volleyball A',
+                                    'Boys HS Volleyball B',
+                                    'Girls HS Volleyball A',
+                                    'Girls HS Volleyball B',
+                                  ];
+                                  return ItemTile(
+                                      division: divisions[index],
+                                      index: 0,
+                                      expanded: expanded);
+                                },
+                              );
+                            }
+                          },
+                        )
+                      ],
                     ),
-                  );
-                } else if (_selectedIndex == 0) {
-                  return const Sports();
-                } else if (_selectedIndex == 1) {
-                  return const HomePage();
-                } else {
-                  return const Bulletin();
-                }
-              });
+                  ),
+                );
+              } else if (_selectedIndex == 0) {
+                return const Sports();
+              } else if (_selectedIndex == 1) {
+                return const HomePage();
+              } else {
+                return const Bulletin();
+              }
             }));
   }
 }

@@ -93,6 +93,7 @@ class _MyAppState extends State<MyApp> {
     context.read<Store2>().fetchData(features[1], 1);
     context.read<Store2>().fetchData(features[2], 2);
     context.read<Store2>().fetchData(features[3], 3);
+    context.read<Store3>().getSportsData();
   }
 
   @override
@@ -129,11 +130,6 @@ class _HomePagePageState extends State<HomePagePage> {
   // TODO: Categories load all articles
 
   int _selectedIndex = 1;
-
-  @override
-  void initState() {
-    context.read<Store3>().loaded = false;
-  }
 
   void _onItemTapped(int index) {
     setState(() {
