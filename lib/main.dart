@@ -126,9 +126,6 @@ class HomePagePage extends StatefulWidget {
 }
 
 class _HomePagePageState extends State<HomePagePage> {
-  // TODO: Youtube
-  // TODO: Categories load all articles
-
   int _selectedIndex = 1;
 
   void _onItemTapped(int index) {

@@ -151,9 +151,6 @@ class Store3 extends ChangeNotifier {
         }
       });
 
-      final nlcs = FirebaseStorage.instance.ref().child('school_logo/nlcs.png');
-      nlcsUrl = await nlcs.getDownloadURL();
-
       loaded = true;
 
       notifyListeners();

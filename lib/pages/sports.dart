@@ -578,9 +578,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                         flex: 2,
                         child: Container(
                           padding: EdgeInsets.only(right: 5.w),
-                          child: CachedNetworkImage(
-                            imageUrl: context.read<Store3>().nlcsUrl,
-                          ),
+                          child: Image.asset('assets/school_logos/nlcs.png')
                         ),
                       ),
                       Flexible(
@@ -672,9 +670,7 @@ class _ItemExpandedTileState extends State<ItemExpandedTile> {
                           child: Container(
                             height: 7.h,
                             padding: EdgeInsets.only(left: 5.w),
-                            child: Image.asset('assets/school_logos/${opp[index]}.png')/*CachedNetworkImage(
-                              imageUrl: logoUrl[index],
-                            ),*/
+                            child: Image.asset('assets/school_logos/${opp[index]}.png')
                           ),
                         ),
                       )
