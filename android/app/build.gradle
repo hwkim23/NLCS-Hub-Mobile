@@ -60,7 +60,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-    /*
+    
     signingConfigs {
         debug {
             keyAlias keystoreProperties['keyAlias']
@@ -85,7 +85,7 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
         }
-    }*/
+    }
 }
 
 flutter {
